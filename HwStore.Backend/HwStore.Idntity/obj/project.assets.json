@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Idntity\\HwStore.Idntity.csproj",
+      "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Idntity\\HwStore.Idntity.csproj",
       "projectName": "HwStore.Idntity",
-      "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Idntity\\HwStore.Idntity.csproj",
+      "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Idntity\\HwStore.Idntity.csproj",
       "packagesPath": "C:\\Users\\majid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Idntity\\obj\\",
+      "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Idntity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\majid\\AppData\\Roaming\\NuGet\\NuGet.Config",

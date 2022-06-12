@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "T9ApVk8AbYDrgQ1NZw7NAP3GxfVGTsVcj8JGR1WvLcCM0Q2GpibttFQtfUXcKHCR+mNzw4kJaNx3s65kZKHhDQ==",
+  "dgSpecHash": "KLuhYJqjtQOk0GmNwWmR3MhyNfNB7Fyv6ypYRXke9rWvHy113rrUqVQap5qtA3T6fcnMunGjCGHyhI0rNTDILw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Persistence\\HwStore.Persistence.csproj",
+  "projectFilePath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Persistence\\HwStore.Persistence.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\majid\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\majid\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\majid\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\majid\\.nuget\\packages\\fluentvalidation\\11.0.3\\fluentvalidation.11.0.3.nupkg.sha512",
+    "C:\\Users\\majid\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.0.3\\fluentvalidation.dependencyinjectionextensions.11.0.3.nupkg.sha512",
+    "C:\\Users\\majid\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\majid\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\majid\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\majid\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.5\\microsoft.entityframeworkcore.6.0.5.nupkg.sha512",

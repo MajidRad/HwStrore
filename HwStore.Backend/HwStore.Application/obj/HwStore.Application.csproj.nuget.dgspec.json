@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Application\\HwStore.Application.csproj": {}
+    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Application\\HwStore.Application.csproj": {
+    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Application\\HwStore.Application.csproj",
+        "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj",
         "projectName": "HwStore.Application",
-        "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Application\\HwStore.Application.csproj",
+        "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj",
         "packagesPath": "C:\\Users\\majid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Application\\obj\\",
+        "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\majid\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj": {
-                "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj"
+              "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj": {
+                "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj"
               }
             }
           }
@@ -43,6 +43,20 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.0.3, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -62,14 +76,14 @@
         }
       }
     },
-    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj": {
+    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj",
         "projectName": "HwStore.Domain",
-        "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj",
+        "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj",
         "packagesPath": "C:\\Users\\majid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\obj\\",
+        "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\majid\\AppData\\Roaming\\NuGet\\NuGet.Config",

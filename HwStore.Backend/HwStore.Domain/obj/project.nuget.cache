@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xaw/oJwQI/sRH+k4dBurI5tXyt01RYn9UZxBEWO1s16JU8j+9a5oeCrfAW0UovJb0FlyOvJ0M0SH5+l6iVaiPQ==",
+  "dgSpecHash": "w8n39abwAIvdQjLQTSQ4n3X3+i5M6G7NbQKPT6BGohm7C6Wb7KiBtVSHnEPDsYErNofbE0m8G3qaOoJa1KcPvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Domain\\HwStore.Domain.csproj",
+  "projectFilePath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
