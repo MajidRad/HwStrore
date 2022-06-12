@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "87BGxVPFOQsr6YT6TiFSqdChodFhIMklFTy5QjsuWFU=",
+  "Source": "HwStore.Api",
+  "BasePath": "_content/HwStore.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

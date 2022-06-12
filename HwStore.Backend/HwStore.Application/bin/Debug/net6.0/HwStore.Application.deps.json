@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "HwStore.Application/1.0.0": {
+        "dependencies": {
+          "HwStore.Domain": "1.0.0"
+        },
+        "runtime": {
+          "HwStore.Application.dll": {}
+        }
+      },
+      "HwStore.Domain/1.0.0": {
+        "runtime": {
+          "HwStore.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HwStore.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HwStore.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
