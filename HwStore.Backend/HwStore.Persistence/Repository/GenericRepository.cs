@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HwStore.Persistence.GenericRepository
 {
-    public class GenericRepository<T> : GenricRepository<T> where T : class
+    public class GenericRepository<T> : IGenricRepository<T> where T : class
     {
         private readonly HwStoreDbContext _db;
         internal DbSet<T> dbSet;
@@ -24,20 +24,18 @@ namespace HwStore.Persistence.GenericRepository
             return entity;
         }
 
-        public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProp)
+        public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
+            params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = dbSet;
             query =  query.Where(filter);
-            if (includeProp != null)
+            if (includes != null)
             {
-                foreach(var item in includeProp
-                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query.Include(item);
-                }
+                query= includes.Aggregate(query, (current, include) => current.Include(include));
             }
-            return await query.FirstOrDefaultAsync();
+            return await query.FirstAsync();
         }
+           
 
         public async Task<IEnumerable<T>> GetListAsync(string? includeProp)
         {

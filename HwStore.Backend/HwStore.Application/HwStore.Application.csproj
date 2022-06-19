@@ -7,7 +7,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HwStore.Domain\HwStore.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Details\Handlers\Commands\" />
+    <Folder Include="Features\Details\Handlers\Queries\" />
+    <Folder Include="Features\Details\Requests\Commands\" />
+    <Folder Include="Features\Details\Requests\Queries\" />
+    <Folder Include="Features\Images\Handlers\Commands\" />
+    <Folder Include="Features\Images\Handlers\Queries\" />
+    <Folder Include="Features\Images\Requests\Commands\" />
+    <Folder Include="Features\Images\Requests\Queries\" />
+    <Folder Include="Features\Category\Handlers\Commands\" />
+    <Folder Include="Features\Category\Handlers\Queries\" />
+    <Folder Include="Features\Category\Requests\Commands\" />
+    <Folder Include="Features\Category\Requests\Queries\" />
+    <Folder Include="Features\Brands\Handlers\Commands\" />
+    <Folder Include="Features\Brands\Handlers\Queries\" />
+    <Folder Include="Features\Brands\Requests\Commands\" />
+    <Folder Include="Features\Brands\Requests\Queries\" />
+    <Folder Include="Features\Products\Handlers\Commands\" />
+    <Folder Include="Features\Products\Requests\Commands\" />
   </ItemGroup>
 
 </Project>

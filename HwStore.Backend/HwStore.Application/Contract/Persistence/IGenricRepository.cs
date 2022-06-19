@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace HwStore.Application.Contract.Persistence
 {
-    public interface GenricRepository<T> where T:class
+    public interface IGenricRepository<T> where T : class
     {
-        Task<IEnumerable<T>> GetListAsync(string? includeProp);
-        Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,string? includeProp);
+        Task<IEnumerable<T>> GetListAsync(string? includeProp = null);
+        Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
+         params Expression<Func<T, object>>[] includes);
         Task<T> Add(T entity);
- 
+
         void Remove(T entity);
-        void RemoveRange(T entities); 
+        void RemoveRange(T entities);
 
     }
 }

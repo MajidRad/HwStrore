@@ -10,3 +10,15 @@ C:\Users\majid\source\repos\HwStore\HwStore.Domain\obj\Debug\net6.0\HwStore.Doma
 C:\Users\majid\source\repos\HwStore\HwStore.Domain\obj\Debug\net6.0\refint\HwStore.Domain.dll
 C:\Users\majid\source\repos\HwStore\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.pdb
 C:\Users\majid\source\repos\HwStore\HwStore.Domain\obj\Debug\net6.0\ref\HwStore.Domain.dll
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\bin\Debug\net6.0\HwStore.Domain.deps.json
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\bin\Debug\net6.0\HwStore.Domain.dll
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\bin\Debug\net6.0\HwStore.Domain.pdb
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.csproj.AssemblyReference.cache
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.AssemblyInfoInputs.cache
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.AssemblyInfo.cs
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.csproj.CoreCompileInputs.cache
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.dll
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\refint\HwStore.Domain.dll
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\HwStore.Domain.pdb
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Domain\obj\Debug\net6.0\ref\HwStore.Domain.dll

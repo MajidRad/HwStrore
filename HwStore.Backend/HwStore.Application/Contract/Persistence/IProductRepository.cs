@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace HwStore.Application.Contract.Persistence
 {
-    public interface IProductRepository:GenricRepository<Product>
+    public interface IProductRepository:IGenricRepository<Product>
     {
+        Task<Product> GetProductWithDetails(int id);
         Task Update(Product Product);
     }
 }

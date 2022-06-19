@@ -22,7 +22,8 @@ namespace HwStore.Domain
 
         public IEnumerable<Image>? Images { get; set;}
 
-        public int DetailId { get; set; }
+        public ICollection<Specification>? Specifications { get; set; }
+
         
     }
 }

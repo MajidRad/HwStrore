@@ -12,11 +12,10 @@ namespace HwStore.Persistence.Repository
         private readonly HwStoreDbContext _db;
         public UnitOfWork(HwStoreDbContext db)
         {
-            ProductRepository = new ProductRepostiory(_db);
             _db = db;
+            ProductRepository = new ProductRepostiory(_db);
         }
         public IProductRepository ProductRepository { get; private set; }
-
 
         public async Task SaveAsync()
         {

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HwStore.Domain
 {
-    public class Detail
+    public class Specification
     {
         public int Id { get; set; }
-        public string? PropertyName { get; set; }
-        public string? PropertyValue { get; set; }
+        public string? SpecLabel { get; set; }
+        public string? SpecValue { get; set; }
 
-        public int ProductId { get; set; }
         public Product? Product { get; set; }
+        public int productId { get; set; }
     }
 }
