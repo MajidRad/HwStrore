@@ -2331,6 +2331,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "HwStore.Application >= 1.0.0",
       "HwStore.Persistence >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.5",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -2363,6 +2364,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj": {
+              "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj"
+            },
             "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Persistence\\HwStore.Persistence.csproj": {
               "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Persistence\\HwStore.Persistence.csproj"
             }

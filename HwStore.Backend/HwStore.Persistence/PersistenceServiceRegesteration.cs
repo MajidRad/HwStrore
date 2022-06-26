@@ -1,4 +1,6 @@
-﻿using HwStore.Application.Contract.Persistence;
+﻿using AutoMapper;
+using HwStore.Application.Contract.Persistence;
+using HwStore.Application.Profiles;
 using HwStore.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +22,7 @@ namespace HwStore.Persistence
             services.AddDbContext<HwStoreDbContext>(options =>
              options.UseSqlServer(configuration.GetConnectionString("HwConnectionString")
             ));
+       
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }

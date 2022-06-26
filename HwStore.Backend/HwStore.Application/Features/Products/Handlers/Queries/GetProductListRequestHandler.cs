@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HwStore.Application.Contract.Persistence;
+using HwStore.Application.Core;
 using HwStore.Application.DTOs.Product;
 using HwStore.Application.Features.Products.Requests.Queries;
 using MediatR;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HwStore.Application.Features.Products.Handlers.Queries
 {
-    public class GetProductListRequestHandler : IRequestHandler<GetProductListRequest, List<ProductDto_Base>>
+    public class GetProductListRequestHandler : IRequestHandler<GetProductListRequest, Result<PagedList<ProductDto_Base>>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -21,11 +22,15 @@ namespace HwStore.Application.Features.Products.Handlers.Queries
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<List<ProductDto_Base>> Handle(GetProductListRequest request, CancellationToken cancellationToken)
+
+        public async Task<Result<PagedList<ProductDto_Base>>> Handle(GetProductListRequest request, CancellationToken cancellationToken)
         {
-            var products = await _unitOfWork.ProductRepository.GetListAsync();
-            var mappedProducts = _mapper.Map<List<ProductDto_Base>>(products);
-            return mappedProducts;
+            var products = await _unitOfWork.ProductRepository.GetPagedListAsync<ProductDto_Base>(request.Params);
+            var mappedProducts = _mapper.Map<PagedList<ProductDto_Base>>(products);
+            return Result<PagedList<ProductDto_Base>>.Success(mappedProducts);
         }
+
+   
+
     }
 }

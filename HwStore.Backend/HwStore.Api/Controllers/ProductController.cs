@@ -1,4 +1,6 @@
-﻿using HwStore.Application.DTOs.Product;
+﻿using HwStore.Application.Core;
+using HwStore.Application.DTOs.Product;
+using HwStore.Application.Features.Products.Requests.Commands;
 using HwStore.Application.Features.Products.Requests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -8,26 +10,31 @@ namespace HwStore.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseApiController
     {
-        private readonly IMediator _mediator;
-
-        public ProductController(IMediator mediator)
+        public ProductController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
+
         [HttpGet]
-        public async Task<ActionResult<List<ProductDto_Base>>> Products()
+        public async Task<ActionResult<PagedList<ProductDto_Base>>> Products([FromQuery] ProductParams productParams)
         {
-            var products = await _mediator.Send(new GetProductListRequest());
-            return Ok(products);
+            var products = await Mediator.Send(new GetProductListRequest() { Params = productParams });
+            return HandlePagedResult(products);
         }
  
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto_Details>> product(int id)
         {
-            var product = await _mediator.Send(new GetProductByIdRequest() { Id = id });
-            return Ok(product);
+            var product = await Mediator.Send(new GetProductByIdRequest() { Id = id });
+            return HandleResult<ProductDto_Details>(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct([FromBody] ProductDto_Create product)
+        {
+
+            return HandleResult(await Mediator.Send(new CreateProductRequest() { Product = product })); 
         }
     }
 }

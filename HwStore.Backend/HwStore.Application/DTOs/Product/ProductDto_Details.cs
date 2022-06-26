@@ -1,6 +1,7 @@
 ﻿using HwStore.Application.DTOs.Brand;
 using HwStore.Application.DTOs.Category;
 using HwStore.Application.DTOs.Image;
+using HwStore.Application.DTOs.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace HwStore.Application.DTOs.Product
 
         public IEnumerable<ImageDto_Base>? Images { get; set; }
 
-        public int DetailId { get; set; }
+        public ICollection<SpecificationDto_Base> Specifications { get; set; }
     }
 }

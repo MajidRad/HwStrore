@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HwStore.Application\HwStore.Application.csproj" />
     <ProjectReference Include="..\HwStore.Persistence\HwStore.Persistence.csproj" />
   </ItemGroup>
 

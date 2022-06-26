@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "HwStore.Api/1.0.0": {
         "dependencies": {
+          "HwStore.Application": "1.0.0",
           "HwStore.Persistence": "1.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.5",
           "Swashbuckle.AspNetCore": "6.2.3"
