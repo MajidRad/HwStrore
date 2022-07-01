@@ -59,19 +59,18 @@ namespace HwStore.Persistence.Repository
 
         public async Task<PagedList<TResult>> GetPagedListAsync<TResult>(PaginationParams param)
         {
-            int totalSize = await dbSet.CountAsync();
-            var items = await dbSet
-                .Skip((param.PageNumber - 1) * param.PageSize)
+            var totalCount =await dbSet.CountAsync();
+            var items =await dbSet
+                .Skip(param.PageNumber - 1 * param.PageSize)
                 .Take(param.PageSize)
                 .ProjectTo<TResult>(_mapper.ConfigurationProvider)
                 .ToListAsync();
-
             return new PagedList<TResult>
             {
-                Items = items,
                 CurrentPage = param.PageNumber,
+                Items = items,
                 PageSize = param.PageSize,
-                TotalCount = totalSize,
+                TotalCount = totalCount,
             };
         }
 
