@@ -3,6 +3,7 @@ using HwStore.Application.DTOs.Product;
 using HwStore.Application.Features.Products.Requests.Commands;
 using HwStore.Application.Features.Products.Requests.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,8 @@ namespace HwStore.Api.Controllers
             var products = await Mediator.Send(new GetProductListRequest() { Params = productParams });
             return HandlePagedResult(products);
         }
- 
+
+        [Authorize] 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto_Details>> product(int id)
         {

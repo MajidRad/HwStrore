@@ -33,6 +33,9 @@
               },
               "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Persistence\\HwStore.Persistence.csproj": {
                 "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Persistence\\HwStore.Persistence.csproj"
+              },
+              "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\Identity.csproj": {
+                "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\Identity.csproj"
               }
             }
           }
@@ -187,6 +190,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -256,6 +265,85 @@
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\Identity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\Identity.csproj",
+        "projectName": "Identity",
+        "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\Identity.csproj",
+        "packagesPath": "C:\\Users\\majid\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\Identity\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\majid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj": {
+                "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Application\\HwStore.Application.csproj"
+              },
+              "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj": {
+                "projectPath": "C:\\Users\\majid\\source\\repos\\HwStore\\HwStore.Backend\\HwStore.Domain\\HwStore.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [

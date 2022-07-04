@@ -1,6 +1,7 @@
 using HwStore.Application;
 
 using HwStore.Persistence;
+using Identity;
 using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +44,7 @@ builder.Services.AddSwaggerGen(options =>
 });
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
-
+builder.Services.ConfigureIdentity(builder.Configuration);
 builder.Services.AddCors(options => options
     .AddPolicy("allowSpecificOrigin", policy =>
     {
