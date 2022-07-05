@@ -13,6 +13,7 @@ namespace HwStore.Persistence.Configuration.Entities
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
+            builder.HasMany<Image>(p => p.Images);
             builder.HasData(
 
                 new Product

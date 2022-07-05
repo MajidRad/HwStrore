@@ -6,7 +6,7 @@ namespace HwStore.Persistence
 {
     public class HwStoreDbContext : DbContext
     {
-        public HwStoreDbContext(DbContextOptions options) : base(options) { }
+        public HwStoreDbContext(DbContextOptions<HwStoreDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -13,6 +13,6 @@ namespace HwStore.Domain
         public string? SpecValue { get; set; }
 
         public Product? Product { get; set; }
-        public int productId { get; set; }
+        public int ProductId { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace HwStore.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.5")
+                .HasAnnotation("ProductVersion", "6.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -120,6 +120,64 @@ namespace HwStore.Persistence.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "6800XT",
+                            Path = "images/product/6800XT-1",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "6700XT",
+                            Path = "images/product/6700XT-1",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "RTX 3070",
+                            Path = "images/product/RTX-3070-1",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "5800X",
+                            Path = "images/product/5800X-1",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "5700X",
+                            Path = "images/product/5700X-1",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "12700K",
+                            Path = "images/product/12700K-1",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "11900K",
+                            Path = "images/product/11900K-1",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Vengeance",
+                            Path = "images/product/Vengeance-1",
+                            ProductId = 8
+                        });
                 });
 
             modelBuilder.Entity("HwStore.Domain.Product", b =>
@@ -247,18 +305,18 @@ namespace HwStore.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpecLabel")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SpecValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("productId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("productId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Specifications");
 
@@ -266,555 +324,555 @@ namespace HwStore.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            ProductId = 1,
                             SpecLabel = "INTERFACE",
-                            SpecValue = "PCI Express® Gen 4",
-                            productId = 1
+                            SpecValue = "PCI Express® Gen 4"
                         },
                         new
                         {
                             Id = 2,
+                            ProductId = 1,
                             SpecLabel = "CORES",
-                            SpecValue = "4608 Units",
-                            productId = 1
+                            SpecValue = "4608 Units"
                         },
                         new
                         {
                             Id = 3,
+                            ProductId = 1,
                             SpecLabel = "CORE CLOCKS",
-                            SpecValue = "Boost: Up to 2310 MHz / Game: Up to 2065 MHz",
-                            productId = 1
+                            SpecValue = "Boost: Up to 2310 MHz / Game: Up to 2065 MHz"
                         },
                         new
                         {
                             Id = 4,
+                            ProductId = 1,
                             SpecLabel = "MEMORY SPEED",
-                            SpecValue = "16 Gbps",
-                            productId = 1
+                            SpecValue = "16 Gbps"
                         },
                         new
                         {
                             Id = 5,
+                            ProductId = 1,
                             SpecLabel = "MEMORY ",
-                            SpecValue = "16GB GDDR6",
-                            productId = 1
+                            SpecValue = "16GB GDDR6"
                         },
                         new
                         {
                             Id = 6,
+                            ProductId = 1,
                             SpecLabel = "MEMORY BUS",
-                            SpecValue = "256-bit",
-                            productId = 1
+                            SpecValue = "256-bit"
                         },
                         new
                         {
                             Id = 7,
+                            ProductId = 1,
                             SpecLabel = "OUTPUT",
-                            SpecValue = "DisplayPort x 3 (v1.4)",
-                            productId = 1
+                            SpecValue = "DisplayPort x 3 (v1.4)"
                         },
                         new
                         {
                             Id = 8,
+                            ProductId = 1,
                             SpecLabel = "POWER CONNECTORS",
-                            SpecValue = "300 W",
-                            productId = 1
+                            SpecValue = "300 W"
                         },
                         new
                         {
                             Id = 9,
+                            ProductId = 2,
                             SpecLabel = "INTERFACE",
-                            SpecValue = "PCI Express® Gen 4",
-                            productId = 2
+                            SpecValue = "PCI Express® Gen 4"
                         },
                         new
                         {
                             Id = 10,
+                            ProductId = 2,
                             SpecLabel = "CORES",
-                            SpecValue = "2560 Units",
-                            productId = 2
+                            SpecValue = "2560 Units"
                         },
                         new
                         {
                             Id = 11,
+                            ProductId = 2,
                             SpecLabel = "CORE CLOCKS",
-                            SpecValue = "Boost: Up to 2620 MHz / Game: Up to 2474 MHz",
-                            productId = 2
+                            SpecValue = "Boost: Up to 2620 MHz / Game: Up to 2474 MHz"
                         },
                         new
                         {
                             Id = 12,
+                            ProductId = 2,
                             SpecLabel = "MEMORY SPEED",
-                            SpecValue = "16 Gbps",
-                            productId = 2
+                            SpecValue = "16 Gbps"
                         },
                         new
                         {
                             Id = 13,
+                            ProductId = 2,
                             SpecLabel = "MEMORY ",
-                            SpecValue = "12GB GDDR6",
-                            productId = 2
+                            SpecValue = "12GB GDDR6"
                         },
                         new
                         {
                             Id = 14,
+                            ProductId = 2,
                             SpecLabel = "MEMORY BUS",
-                            SpecValue = "192-bit",
-                            productId = 2
+                            SpecValue = "192-bit"
                         },
                         new
                         {
                             Id = 15,
+                            ProductId = 2,
                             SpecLabel = "OUTPUT",
-                            SpecValue = "DisplayPort x 3 (v1.4)",
-                            productId = 2
+                            SpecValue = "DisplayPort x 3 (v1.4)"
                         },
                         new
                         {
                             Id = 16,
+                            ProductId = 3,
                             SpecLabel = "POWER CONNECTORS",
-                            SpecValue = "230 W",
-                            productId = 3
+                            SpecValue = "230 W"
                         },
                         new
                         {
                             Id = 17,
+                            ProductId = 3,
                             SpecLabel = "INTERFACE",
-                            SpecValue = "PCI Express® Gen 4",
-                            productId = 3
+                            SpecValue = "PCI Express® Gen 4"
                         },
                         new
                         {
                             Id = 18,
+                            ProductId = 3,
                             SpecLabel = "CORES",
-                            SpecValue = "5888 Units",
-                            productId = 3
+                            SpecValue = "5888 Units"
                         },
                         new
                         {
                             Id = 19,
+                            ProductId = 3,
                             SpecLabel = "CORE CLOCKS",
-                            SpecValue = "Boost:Boost: 1845 MHz",
-                            productId = 3
+                            SpecValue = "Boost:Boost: 1845 MHz"
                         },
                         new
                         {
                             Id = 20,
+                            ProductId = 3,
                             SpecLabel = "MEMORY SPEED",
-                            SpecValue = "14 Gbps",
-                            productId = 3
+                            SpecValue = "14 Gbps"
                         },
                         new
                         {
                             Id = 21,
+                            ProductId = 3,
                             SpecLabel = "MEMORY ",
-                            SpecValue = "8GB GDDR6",
-                            productId = 3
+                            SpecValue = "8GB GDDR6"
                         },
                         new
                         {
                             Id = 22,
+                            ProductId = 3,
                             SpecLabel = "MEMORY BUS",
-                            SpecValue = "256-bit",
-                            productId = 3
+                            SpecValue = "256-bit"
                         },
                         new
                         {
                             Id = 23,
+                            ProductId = 3,
                             SpecLabel = "OUTPUT",
-                            SpecValue = "DisplayPort x 3 (v1.4) / HDMI x 1 (Supports 4K@120Hz as specified in HDMI 2.1)",
-                            productId = 3
+                            SpecValue = "DisplayPort x 3 (v1.4) / HDMI x 1 (Supports 4K@120Hz as specified in HDMI 2.1)"
                         },
                         new
                         {
                             Id = 24,
+                            ProductId = 3,
                             SpecLabel = "POWER CONNECTORS",
-                            SpecValue = "240W",
-                            productId = 3
+                            SpecValue = "240W"
                         },
                         new
                         {
                             Id = 25,
+                            ProductId = 4,
                             SpecLabel = "Series",
-                            SpecValue = "Ryzen 7 5000 Series",
-                            productId = 4
+                            SpecValue = "Ryzen 7 5000 Series"
                         },
                         new
                         {
                             Id = 26,
+                            ProductId = 4,
                             SpecLabel = "CPU Socket Type ",
-                            SpecValue = "Socket AM4",
-                            productId = 4
+                            SpecValue = "Socket AM4"
                         },
                         new
                         {
                             Id = 27,
+                            ProductId = 4,
                             SpecLabel = "# of Cores ",
-                            SpecValue = "8-Core",
-                            productId = 4
+                            SpecValue = "8-Core"
                         },
                         new
                         {
                             Id = 28,
+                            ProductId = 4,
                             SpecLabel = "# of Threads ",
-                            SpecValue = "16",
-                            productId = 4
+                            SpecValue = "16"
                         },
                         new
                         {
                             Id = 29,
+                            ProductId = 4,
                             SpecLabel = "Operating Frequency  ",
-                            SpecValue = "3.8 GHz",
-                            productId = 4
+                            SpecValue = "3.8 GHz"
                         },
                         new
                         {
                             Id = 30,
+                            ProductId = 4,
                             SpecLabel = "Max Turbo Frequency ",
-                            SpecValue = "4.7 GHz",
-                            productId = 4
+                            SpecValue = "4.7 GHz"
                         },
                         new
                         {
                             Id = 31,
+                            ProductId = 4,
                             SpecLabel = "L2 Cache ",
-                            SpecValue = "4MB",
-                            productId = 4
+                            SpecValue = "4MB"
                         },
                         new
                         {
                             Id = 32,
+                            ProductId = 4,
                             SpecLabel = "L3 Cache ",
-                            SpecValue = "32MB",
-                            productId = 4
+                            SpecValue = "32MB"
                         },
                         new
                         {
                             Id = 33,
+                            ProductId = 4,
                             SpecLabel = "Manufacturing Tech ",
-                            SpecValue = "7nm",
-                            productId = 4
+                            SpecValue = "7nm"
                         },
                         new
                         {
                             Id = 34,
+                            ProductId = 4,
                             SpecLabel = "Memory Types",
-                            SpecValue = "DDR4 3200",
-                            productId = 4
+                            SpecValue = "DDR4 3200"
                         },
                         new
                         {
                             Id = 35,
+                            ProductId = 4,
                             SpecLabel = "Thermal Design Power ",
-                            SpecValue = "105W",
-                            productId = 4
+                            SpecValue = "105W"
                         },
                         new
                         {
                             Id = 36,
+                            ProductId = 5,
                             SpecLabel = "Series",
-                            SpecValue = "Ryzen 7 5000 Series",
-                            productId = 5
+                            SpecValue = "Ryzen 7 5000 Series"
                         },
                         new
                         {
                             Id = 79,
+                            ProductId = 5,
                             SpecLabel = "CPU Socket Type ",
-                            SpecValue = "Socket AM4",
-                            productId = 5
+                            SpecValue = "Socket AM4"
                         },
                         new
                         {
                             Id = 37,
+                            ProductId = 5,
                             SpecLabel = "# of Cores ",
-                            SpecValue = "8-Core",
-                            productId = 5
+                            SpecValue = "8-Core"
                         },
                         new
                         {
                             Id = 38,
+                            ProductId = 5,
                             SpecLabel = "# of Threads ",
-                            SpecValue = "16",
-                            productId = 5
+                            SpecValue = "16"
                         },
                         new
                         {
                             Id = 39,
+                            ProductId = 5,
                             SpecLabel = "Operating Frequency  ",
-                            SpecValue = "3.3 GHz",
-                            productId = 5
+                            SpecValue = "3.3 GHz"
                         },
                         new
                         {
                             Id = 40,
+                            ProductId = 5,
                             SpecLabel = "Max Turbo Frequency ",
-                            SpecValue = "4.3 GHz",
-                            productId = 5
+                            SpecValue = "4.3 GHz"
                         },
                         new
                         {
                             Id = 41,
+                            ProductId = 5,
                             SpecLabel = "L2 Cache ",
-                            SpecValue = "4MB",
-                            productId = 5
+                            SpecValue = "4MB"
                         },
                         new
                         {
                             Id = 42,
+                            ProductId = 5,
                             SpecLabel = "L3 Cache ",
-                            SpecValue = "32MB",
-                            productId = 5
+                            SpecValue = "32MB"
                         },
                         new
                         {
                             Id = 43,
+                            ProductId = 5,
                             SpecLabel = "Manufacturing Tech ",
-                            SpecValue = "7nm",
-                            productId = 5
+                            SpecValue = "7nm"
                         },
                         new
                         {
                             Id = 44,
+                            ProductId = 5,
                             SpecLabel = "Memory Types",
-                            SpecValue = "DDR4 3200",
-                            productId = 5
+                            SpecValue = "DDR4 3200"
                         },
                         new
                         {
                             Id = 45,
+                            ProductId = 5,
                             SpecLabel = "Thermal Design Power ",
-                            SpecValue = "105W",
-                            productId = 5
+                            SpecValue = "105W"
                         },
                         new
                         {
                             Id = 46,
+                            ProductId = 6,
                             SpecLabel = "Series",
-                            SpecValue = "Core i7 12th Gen",
-                            productId = 6
+                            SpecValue = "Core i7 12th Gen"
                         },
                         new
                         {
                             Id = 47,
+                            ProductId = 6,
                             SpecLabel = "CPU Socket Type",
-                            SpecValue = "LGA 1700",
-                            productId = 6
+                            SpecValue = "LGA 1700"
                         },
                         new
                         {
                             Id = 48,
+                            ProductId = 6,
                             SpecLabel = "Core Name",
-                            SpecValue = "Alder Lake",
-                            productId = 6
+                            SpecValue = "Alder Lake"
                         },
                         new
                         {
                             Id = 49,
+                            ProductId = 6,
                             SpecLabel = "# of Cores ",
-                            SpecValue = "12-Core (8P+4E)",
-                            productId = 6
+                            SpecValue = "12-Core (8P+4E)"
                         },
                         new
                         {
                             Id = 50,
+                            ProductId = 6,
                             SpecLabel = "# of Threads ",
-                            SpecValue = "20",
-                            productId = 6
+                            SpecValue = "20"
                         },
                         new
                         {
                             Id = 51,
+                            ProductId = 6,
                             SpecLabel = "Operating Frequency  ",
-                            SpecValue = "3.6 GHz",
-                            productId = 6
+                            SpecValue = "3.6 GHz"
                         },
                         new
                         {
                             Id = 52,
+                            ProductId = 6,
                             SpecLabel = "Max Turbo Frequency ",
-                            SpecValue = "Up to 4.9 GHz",
-                            productId = 6
+                            SpecValue = "Up to 4.9 GHz"
                         },
                         new
                         {
                             Id = 53,
+                            ProductId = 6,
                             SpecLabel = "L2 Cache ",
-                            SpecValue = "12MB",
-                            productId = 6
+                            SpecValue = "12MB"
                         },
                         new
                         {
                             Id = 54,
+                            ProductId = 6,
                             SpecLabel = "L3 Cache ",
-                            SpecValue = "25MB",
-                            productId = 6
+                            SpecValue = "25MB"
                         },
                         new
                         {
                             Id = 55,
+                            ProductId = 6,
                             SpecLabel = "Manufacturing Tech ",
-                            SpecValue = "Intel 7",
-                            productId = 6
+                            SpecValue = "Intel 7"
                         },
                         new
                         {
                             Id = 56,
+                            ProductId = 6,
                             SpecLabel = "Memory Types",
-                            SpecValue = "DDR4 3200 / DDR5 4800",
-                            productId = 6
+                            SpecValue = "DDR4 3200 / DDR5 4800"
                         },
                         new
                         {
                             Id = 57,
+                            ProductId = 6,
                             SpecLabel = "Thermal Design Power ",
-                            SpecValue = "190W",
-                            productId = 6
+                            SpecValue = "190W"
                         },
                         new
                         {
                             Id = 58,
+                            ProductId = 7,
                             SpecLabel = "Series",
-                            SpecValue = "Core i7 11th Gen",
-                            productId = 7
+                            SpecValue = "Core i7 11th Gen"
                         },
                         new
                         {
                             Id = 59,
+                            ProductId = 7,
                             SpecLabel = "CPU Socket Type",
-                            SpecValue = "LGA 1700",
-                            productId = 7
+                            SpecValue = "LGA 1700"
                         },
                         new
                         {
                             Id = 60,
+                            ProductId = 7,
                             SpecLabel = "Core Name",
-                            SpecValue = "Alder Lake",
-                            productId = 7
+                            SpecValue = "Alder Lake"
                         },
                         new
                         {
                             Id = 61,
+                            ProductId = 7,
                             SpecLabel = "# of Cores ",
-                            SpecValue = "12-Core",
-                            productId = 7
+                            SpecValue = "12-Core"
                         },
                         new
                         {
                             Id = 62,
+                            ProductId = 7,
                             SpecLabel = "# of Threads ",
-                            SpecValue = "24",
-                            productId = 7
+                            SpecValue = "24"
                         },
                         new
                         {
                             Id = 63,
+                            ProductId = 7,
                             SpecLabel = "Operating Frequency  ",
-                            SpecValue = "3.6 GHz",
-                            productId = 7
+                            SpecValue = "3.6 GHz"
                         },
                         new
                         {
                             Id = 64,
+                            ProductId = 7,
                             SpecLabel = "Max Turbo Frequency ",
-                            SpecValue = "Up to 4.9 GHz",
-                            productId = 7
+                            SpecValue = "Up to 4.9 GHz"
                         },
                         new
                         {
                             Id = 65,
+                            ProductId = 7,
                             SpecLabel = "L2 Cache ",
-                            SpecValue = "12MB",
-                            productId = 7
+                            SpecValue = "12MB"
                         },
                         new
                         {
                             Id = 66,
+                            ProductId = 7,
                             SpecLabel = "L3 Cache ",
-                            SpecValue = "25MB",
-                            productId = 7
+                            SpecValue = "25MB"
                         },
                         new
                         {
                             Id = 67,
+                            ProductId = 7,
                             SpecLabel = "Manufacturing Tech ",
-                            SpecValue = "Intel 7",
-                            productId = 7
+                            SpecValue = "Intel 7"
                         },
                         new
                         {
                             Id = 68,
+                            ProductId = 7,
                             SpecLabel = "Memory Types",
-                            SpecValue = "DDR4 3200 ",
-                            productId = 7
+                            SpecValue = "DDR4 3200 "
                         },
                         new
                         {
                             Id = 69,
+                            ProductId = 7,
                             SpecLabel = "Thermal Design Power ",
-                            SpecValue = "190W",
-                            productId = 7
+                            SpecValue = "190W"
                         },
                         new
                         {
                             Id = 70,
+                            ProductId = 8,
                             SpecLabel = "Capacity",
-                            SpecValue = "16GB (2 x 8GB)",
-                            productId = 8
+                            SpecValue = "16GB (2 x 8GB)"
                         },
                         new
                         {
                             Id = 71,
+                            ProductId = 8,
                             SpecLabel = "Type",
-                            SpecValue = "288-Pin DDR4 SDRAM",
-                            productId = 8
+                            SpecValue = "288-Pin DDR4 SDRAM"
                         },
                         new
                         {
                             Id = 72,
+                            ProductId = 8,
                             SpecLabel = "Speed ",
-                            SpecValue = "DDR4 3200 (PC4 25600)",
-                            productId = 8
+                            SpecValue = "DDR4 3200 (PC4 25600)"
                         },
                         new
                         {
                             Id = 73,
+                            ProductId = 8,
                             SpecLabel = "CAS Latency ",
-                            SpecValue = "16",
-                            productId = 8
+                            SpecValue = "16"
                         },
                         new
                         {
                             Id = 74,
+                            ProductId = 8,
                             SpecLabel = "Timing",
-                            SpecValue = "16-18-18-36",
-                            productId = 8
+                            SpecValue = "16-18-18-36"
                         },
                         new
                         {
                             Id = 75,
+                            ProductId = 8,
                             SpecLabel = "Voltage ",
-                            SpecValue = "1.35V",
-                            productId = 8
+                            SpecValue = "1.35V"
                         },
                         new
                         {
                             Id = 76,
+                            ProductId = 8,
                             SpecLabel = "Chipset",
-                            SpecValue = "Intel XMP 2.0",
-                            productId = 8
+                            SpecValue = "Intel XMP 2.0"
                         },
                         new
                         {
                             Id = 77,
+                            ProductId = 8,
                             SpecLabel = "Color",
-                            SpecValue = "Black",
-                            productId = 8
+                            SpecValue = "Black"
                         },
                         new
                         {
                             Id = 78,
+                            ProductId = 8,
                             SpecLabel = "Heat Spreader",
-                            SpecValue = "Anodized Aluminum",
-                            productId = 8
+                            SpecValue = "Anodized Aluminum"
                         });
                 });
 
@@ -852,7 +910,7 @@ namespace HwStore.Persistence.Migrations
                 {
                     b.HasOne("HwStore.Domain.Product", "Product")
                         .WithMany("Specifications")
-                        .HasForeignKey("productId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

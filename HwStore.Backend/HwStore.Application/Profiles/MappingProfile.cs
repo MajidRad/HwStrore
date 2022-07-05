@@ -11,7 +11,9 @@ namespace HwStore.Application.Profiles
             CreateMap<Product, ProductDto_Base>().ReverseMap();
             CreateMap<Product, ProductDto_Details>().ReverseMap();
             CreateMap<Product, ProductDto_Create>().ReverseMap();
-            //CreateMap<Product, PagedList<ProductDto_Base>>();
+            CreateMap<PagedList<Product>, PagedList<ProductDto_Base>>().ReverseMap()
+                .ForMember(x => x.TotalPage, opt => opt.DoNotUseDestinationValue())
+                .ForMember(x => x.CurrentPage, opt => opt.Ignore());
 
             CreateMap<Category, CategoryDto_Base>().ReverseMap();
             CreateMap<Category, CategoryDto_Details>().ReverseMap();
