@@ -2,6 +2,7 @@
 using AutoMapper.QueryableExtensions;
 using HwStore.Application.Contract.Persistence;
 using HwStore.Application.Core;
+using HwStore.Application.DTOs.Product;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -59,20 +60,12 @@ namespace HwStore.Persistence.Repository
 
         public async Task<PagedList<TResult>> GetPagedListAsync<TResult>(PaginationParams param)
         {
-            var totalCount =await dbSet.CountAsync();
             var pageNumber = param.PageNumber>0 ? param.PageNumber - 1 : 0;
-            var items =await dbSet
-                .Skip(pageNumber* param.PageSize)
-                .Take(param.PageSize)
-                .ProjectTo<TResult>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-            return new PagedList<TResult>
-            {
-                CurrentPage = param.PageNumber,
-                Items = items,
-                PageSize = param.PageSize,
-                TotalCount = totalCount,
-            };
+            var query = dbSet
+                .ProjectTo<TResult>(_mapper.ConfigurationProvider).AsQueryable();
+                
+            var results =await  PagedList<TResult>.ToPageList(query, param.PageNumber, param.PageSize);
+            return results;
         }
 
         public void Remove(T entity)

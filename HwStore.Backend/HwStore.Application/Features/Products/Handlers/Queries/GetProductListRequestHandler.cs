@@ -4,6 +4,7 @@ using HwStore.Application.Core;
 using HwStore.Application.DTOs.Product;
 using HwStore.Application.Features.Products.Requests.Queries;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,12 +27,10 @@ namespace HwStore.Application.Features.Products.Handlers.Queries
         public async Task<Result<PagedList<ProductDto_Base>>> Handle(GetProductListRequest request, CancellationToken cancellationToken)
         {
             var products = await _unitOfWork.ProductRepository.GetPagedListAsync<ProductDto_Base>(request.Params);
-            //var products = await _unitOfWork.ProductRepository.GetProducts(request.Params);
-            var mappedProducts = _mapper.Map<PagedList<ProductDto_Base>>(products);
-            return Result<PagedList<ProductDto_Base>>.Success(mappedProducts);
+                
+           
+            
+            return Result<PagedList<ProductDto_Base>>.Success(products);
         }
-
-   
-
     }
 }

@@ -11,8 +11,8 @@ namespace HwStore.Api.Controllers
     public class BaseApiController : ControllerBase
     {
         private IMediator _mediator;
-        protected IMediator Mediator => _mediator ??= HttpContext.RequestServices
-            .GetService<IMediator>();
+        protected IMediator Mediator => _mediator ??= 
+            HttpContext.RequestServices.GetService<IMediator>() ;
 
         public BaseApiController(IMediator mediator)
         {
@@ -40,10 +40,10 @@ namespace HwStore.Api.Controllers
             {
                 Response.AddPaginationHeader
                     (
-                        result.Value.CurrentPage,
-                        result.Value.TotalPage,
-                        result.Value.PageSize,
-                        result.Value.TotalCount
+                        result.Value.MetaData.CurrentPage,
+                        result.Value.MetaData.TotalPages,
+                        result.Value.MetaData.PageSize,
+                        result.Value.MetaData.TotalCount
                     );
                 return Ok(result.Value);
             }

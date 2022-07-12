@@ -42,21 +42,7 @@ namespace HwStore.Persistence.Repository
 
         public async Task<PagedList<Product>> GetProducts(PaginationParams param)
         {
-            var totalCount = await _db.Products.CountAsync();
-            var pagenumber = param.PageNumber > 0 ? param.PageNumber - 1 : 0;
-            var products = await _db.Products
-                .Skip(pagenumber * param.PageSize)
-                .Take(param.PageSize)
-                .Include(x=>x.Images)
-                .ToListAsync();
-
-            return new PagedList<Product>
-            {
-                CurrentPage = param.PageNumber,
-                Items = products,
-                PageSize = param.PageSize,
-                TotalCount = totalCount,
-            };
+            throw new NotImplementedException();
         }
     }
 }

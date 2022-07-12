@@ -11,6 +11,7 @@
           "HwStore.Application": "1.0.0",
           "HwStore.Persistence": "1.0.0",
           "Identity": "1.0.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.5",
           "Swashbuckle.AspNetCore": "6.2.3"
         },

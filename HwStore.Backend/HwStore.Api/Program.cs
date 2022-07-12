@@ -45,6 +45,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureIdentity(builder.Configuration);
+
 builder.Services.AddCors(options => options
     .AddPolicy("allowSpecificOrigin", policy =>
     {
