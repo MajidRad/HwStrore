@@ -1,10 +1,12 @@
 ﻿using HwStore.Application.Contract.Identity;
 using HwStore.Application.Models.Identity;
 using HwStore.Domain;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,14 +17,22 @@ namespace Identity.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly TokenServices _tokenServices;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public AuthService(UserManager<ApplicationUser> userManager
-            , SignInManager<ApplicationUser> signInManager, TokenServices tokenServices)
+            , SignInManager<ApplicationUser> signInManager, TokenServices tokenServices, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenServices = tokenServices;
+            _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<ApplicationUser> GetCurrentUser()
+        {
+            var email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            return await _userManager.FindByEmailAsync(email.ToString());
+        }
+
         public async Task<AuthResponse> Login(AuthRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);

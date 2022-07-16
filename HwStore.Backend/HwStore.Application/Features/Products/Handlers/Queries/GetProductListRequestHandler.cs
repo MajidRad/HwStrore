@@ -27,9 +27,6 @@ namespace HwStore.Application.Features.Products.Handlers.Queries
         public async Task<Result<PagedList<ProductDto_Base>>> Handle(GetProductListRequest request, CancellationToken cancellationToken)
         {
             var products = await _unitOfWork.ProductRepository.GetPagedListAsync<ProductDto_Base>(request.Params);
-                
-           
-            
             return Result<PagedList<ProductDto_Base>>.Success(products);
         }
     }

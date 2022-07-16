@@ -1,3 +1,4 @@
+using HwStore.Api.MiddleWare;
 using HwStore.Application;
 
 using HwStore.Persistence;
@@ -51,11 +52,12 @@ builder.Services.AddCors(options => options
     {
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
-        policy.WithOrigins("https://localhost:3000");
+        policy.AllowCredentials();
+        policy.WithOrigins("http://localhost:3000");
     }));
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

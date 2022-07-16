@@ -1,4 +1,5 @@
 ﻿using HwStore.Application.Models.Identity;
+using HwStore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace HwStore.Application.Contract.Identity
 	{
 		public Task<AuthResponse> Login(AuthRequest request);
 		public Task<RegisterationResponse> Register(RegistarationRequest request);
-		
+		public Task<ApplicationUser> GetCurrentUser();		
 	}
 }

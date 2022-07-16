@@ -15,6 +15,7 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
+import { signUpUser } from "./accountSlice";
 interface IFormInput {
   firstName: string;
   lastName: string;
@@ -42,7 +43,7 @@ const Register = () => {
     formState: { isValid, isSubmitting, errors },
   } = useForm<IFormInput>({ resolver: yupResolver(schema), mode: "all" });
   const submitForm = async (data: FieldValues) => {
-    // handleSubmit(data);
+    dispatch(signUpUser(data));
   };
 
   return (

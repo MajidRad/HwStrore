@@ -14,7 +14,7 @@ import { useForm, FieldValues, FieldPathValues } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAppDispatch } from "../../app/store/configureStore";
-import { SignInUser } from "./accountSlice";
+import { signInUser } from "./accountSlice";
 import { useNavigate } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 interface IFormInputs {
@@ -35,7 +35,7 @@ const Login = () => {
     formState: { isSubmitting, errors, isValid },
   } = useForm<IFormInputs>({ resolver: yupResolver(schema), mode: "all" });
   const submitForm = async (data: FieldValues) => {
-    await dispatch(SignInUser(data));
+    await dispatch(signInUser(data));
     navigate("/");
   };
 
@@ -113,6 +113,7 @@ const Login = () => {
               loading={isSubmitting}
               disabled={!isValid}
               variant="contained"
+              type="submit"
               fullWidth
             >
               Sign In

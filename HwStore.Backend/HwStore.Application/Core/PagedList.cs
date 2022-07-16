@@ -11,6 +11,7 @@ namespace HwStore.Application.Core
     {
         public PagedList(List<T> items, int count, int pageNumber, int pageSize)
         {
+   
             MetaData = new MetaData
             {
                 TotalCount = count,

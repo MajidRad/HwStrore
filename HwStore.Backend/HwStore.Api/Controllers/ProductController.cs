@@ -24,7 +24,7 @@ namespace HwStore.Api.Controllers
             return HandlePagedResult(products);
         }
 
-        [Authorize] 
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDto_Details>> product(int id)
         {
