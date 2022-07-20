@@ -10,7 +10,6 @@ namespace HwStore.Application.Features.Baskets.Requsts.Commands
 {
     public class AddToBasketItemRequest : IRequest<Result<Unit>>
     {
-        public int prodcutId { get; set; }
-        public int quantity { get; set; }
+      public BasketDto_Param AddToBasket { get; set; }
     }
 }

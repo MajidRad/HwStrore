@@ -10,8 +10,6 @@ namespace HwStore.Application.Features.Baskets.Requsts.Commands
 {
     public class RemoveBasketItemRequest : IRequest<Result<Unit>>
     {
-       
-        public int productId { get; set; }
-        public int quantity { get; set; }
+       public BasketDto_Param? basketDto_Param { get; set; }
     }
 }

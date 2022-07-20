@@ -18,17 +18,26 @@ namespace HwStore.Persistence.Repository
         private readonly IMapper _mapper;
         private readonly HwStoreDbContext _db;
         internal DbSet<T> dbSet;
-        public GenericRepository(HwStoreDbContext db,IMapper mapper)
+        public GenericRepository(HwStoreDbContext db, IMapper mapper)
         {
             _mapper = mapper;
             _db = db;
             dbSet = _db.Set<T>();
-           
+
         }
         public async Task<T> Add(T entity)
         {
             await dbSet.AddAsync(entity);
             return entity;
+        }
+
+
+
+        public async Task<bool> Exist(Expression<Func<T, bool>> expression)
+        {
+            var res = await dbSet.Where(expression).FirstOrDefaultAsync();
+            if (res == null) return false;
+            return true;
         }
 
         public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
@@ -40,7 +49,8 @@ namespace HwStore.Persistence.Repository
             {
                 query = includes.Aggregate(query, (current, include) => current.Include(include));
             }
-            return await query.FirstAsync();
+            #pragma warning disable CS8603 // Possible null reference return.
+            return await query.FirstOrDefaultAsync();
         }
 
 
@@ -63,8 +73,8 @@ namespace HwStore.Persistence.Repository
             var query = dbSet
                 .ProjectTo<TResult>(_mapper.ConfigurationProvider)
                 .AsQueryable();
-                
-            var results =await  PagedList<TResult>.ToPageList(query, param.PageNumber, param.PageSize);
+
+            var results = await PagedList<TResult>.ToPageList(query, param.PageNumber, param.PageSize);
             return results;
         }
 

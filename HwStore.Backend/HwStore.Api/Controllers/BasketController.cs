@@ -28,32 +28,18 @@ namespace HwStore.Api.Controllers
         [HttpPost("AddItem")]
         public async Task<ActionResult> AddItemToBasket(int productId, int quantity)
         {
+            var basketDto_param = new BasketDto_Param() { productId = productId, quantity = quantity };
             var result = await Mediator.Send(new AddToBasketItemRequest 
-            {  prodcutId = productId, quantity = quantity });
+            { AddToBasket= basketDto_param });
             return HandleResult(result);
-        }
-
-
-        private BasketDto_Base CreateBasket()
-        {
-            var buyerId = User.Identity?.Name;
-            if (string.IsNullOrEmpty(buyerId))
-            {
-                buyerId = Guid.NewGuid().ToString();
-                var cookieOption = new CookieOptions
-                { Expires = DateTime.Now.AddDays(30), HttpOnly = true, IsEssential = true };
-                Response.Cookies.Append("buyerId", buyerId, cookieOption);
-            }
-            var basket = new BasketDto_Base() { BuyerId = buyerId, };
-            return basket;
         }
 
         [HttpDelete]
         public async Task<ActionResult> RemoveBasketItem(int productId, int quantity)
         {
-          
-            var result = await Mediator.Send(new RemoveBasketItemRequest
-            { productId = productId, quantity = quantity });
+            var basketDto_param = new BasketDto_Param { productId = productId, quantity = quantity };
+            var result = await Mediator.Send(new RemoveBasketItemRequest { basketDto_Param = basketDto_param });
+            
             return HandleResult(result);
         }
 

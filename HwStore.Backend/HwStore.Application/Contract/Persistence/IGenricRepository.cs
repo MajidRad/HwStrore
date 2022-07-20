@@ -15,6 +15,8 @@ namespace HwStore.Application.Contract.Persistence
 
         Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
          params Expression<Func<T, object>>[] includes);
+
+        Task<bool> Exist( Expression<Func<T, bool>> expression);
         Task<T> Add(T entity);
 
         void Remove(T entity);
