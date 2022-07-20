@@ -4,6 +4,7 @@ using HwStore.Application;
 using HwStore.Persistence;
 using Identity;
 using Microsoft.OpenApi.Models;
+using Serilog;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -46,7 +47,11 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureIdentity(builder.Configuration);
+builder.Host.UseSerilog((context, config) =>
+{
+    config.WriteTo.Console();
 
+});
 builder.Services.AddCors(options => options
     .AddPolicy("allowSpecificOrigin", policy =>
     {

@@ -23,6 +23,7 @@ namespace HwStore.Persistence
         public DbSet<Category>? Categories { get; set; } = null!;
         public DbSet<Brand>? Brands { get; set; } = null!;
         public DbSet<Specification> Specifications { get; set; } = null!;
+        public DbSet<Basket> Baskets { get; set; }
 
     }
 }

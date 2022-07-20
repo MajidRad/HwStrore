@@ -7,9 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Brands\Handlers\Commands\**" />
+    <Compile Remove="Features\Brands\Requests\Commands\**" />
+    <Compile Remove="Features\Category\Handlers\Commands\**" />
+    <Compile Remove="Features\Category\Requests\Commands\**" />
+    <Compile Remove="Features\Images\**" />
+    <EmbeddedResource Remove="Features\Brands\Handlers\Commands\**" />
+    <EmbeddedResource Remove="Features\Brands\Requests\Commands\**" />
+    <EmbeddedResource Remove="Features\Category\Handlers\Commands\**" />
+    <EmbeddedResource Remove="Features\Category\Requests\Commands\**" />
+    <EmbeddedResource Remove="Features\Images\**" />
+    <None Remove="Features\Brands\Handlers\Commands\**" />
+    <None Remove="Features\Brands\Requests\Commands\**" />
+    <None Remove="Features\Category\Handlers\Commands\**" />
+    <None Remove="Features\Category\Requests\Commands\**" />
+    <None Remove="Features\Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.0.3" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,14 +40,6 @@
   <ItemGroup>
     <Folder Include="Features\Specifications\Handlers\Commands\" />
     <Folder Include="Features\Specifications\Requests\Commands\" />
-    <Folder Include="Features\Images\Handlers\Commands\" />
-    <Folder Include="Features\Images\Handlers\Queries\" />
-    <Folder Include="Features\Images\Requests\Commands\" />
-    <Folder Include="Features\Images\Requests\Queries\" />
-    <Folder Include="Features\Category\Handlers\Commands\" />
-    <Folder Include="Features\Category\Requests\Commands\" />
-    <Folder Include="Features\Brands\Handlers\Commands\" />
-    <Folder Include="Features\Brands\Requests\Commands\" />
   </ItemGroup>
 
 </Project>

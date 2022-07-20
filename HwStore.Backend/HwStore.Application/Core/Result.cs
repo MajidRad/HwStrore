@@ -17,9 +17,9 @@ namespace HwStore.Application.Core
             new Result<T> { IsSuccess = true, Value = value };
 
         public static Result<T> Failure(List<string> errors) =>
-            new Result<T>() { IsSuccess = false, Errors = errors };
+            new Result<T> { IsSuccess = false, Errors = errors };
 
         public static Result<T> Failure(string error) =>
-            new Result<T>() { IsSuccess = false, Error = error };
+            new Result<T> { IsSuccess = false, Error = error };
     }
 }

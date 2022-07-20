@@ -21,12 +21,13 @@ namespace HwStore.Persistence.Repository
             CategoryRepository = new CategoryRepository(_db,_mapper);
             BrandRepository = new BrandRepository(_db,_mapper);
             SpecificationRepository = new SpecificationRepository(_db,_mapper);
+            BasketRepository = new BasketRepository(_db, _mapper);
         }
         public IProductRepository ProductRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
         public IBrandRepository BrandRepository { get; private set; }
         public ISpecificationRepository SpecificationRepository { get; private set; }
-
+        public IBasketRepository BasketRepository { get; private set; }
         public async Task SaveAsync()
         {
            await _db.SaveChangesAsync();

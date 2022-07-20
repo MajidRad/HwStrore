@@ -15,6 +15,11 @@ C:\Users\majid\source\repos\HwStore\HwStore.Persistence\obj\Debug\net6.0\HwStore
 C:\Users\majid\source\repos\HwStore\HwStore.Persistence\obj\Debug\net6.0\refint\HwStore.Persistence.dll
 C:\Users\majid\source\repos\HwStore\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.pdb
 C:\Users\majid\source\repos\HwStore\HwStore.Persistence\obj\Debug\net6.0\ref\HwStore.Persistence.dll
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.csproj.AssemblyReference.cache
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.AssemblyInfoInputs.cache
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.AssemblyInfo.cs
+C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.csproj.CoreCompileInputs.cache
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Persistence.deps.json
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Persistence.dll
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Persistence.pdb
@@ -22,11 +27,6 @@ C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debu
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Domain.dll
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Application.pdb
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\bin\Debug\net6.0\HwStore.Domain.pdb
-C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.csproj.AssemblyReference.cache
-C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.AssemblyInfoInputs.cache
-C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.AssemblyInfo.cs
-C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.csproj.CoreCompileInputs.cache
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.csproj.CopyComplete
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\HwStore.Persistence.dll
 C:\Users\majid\source\repos\HwStore\HwStore.Backend\HwStore.Persistence\obj\Debug\net6.0\refint\HwStore.Persistence.dll

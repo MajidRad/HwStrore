@@ -12,7 +12,7 @@ namespace HwStore.Application.Contract.Persistence
         ICategoryRepository CategoryRepository { get; }
         IBrandRepository BrandRepository { get; }
         ISpecificationRepository SpecificationRepository { get; }
-
+        IBasketRepository BasketRepository { get; }
         Task SaveAsync();
         void Save();
     }

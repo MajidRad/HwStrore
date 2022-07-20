@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-
+using HwStore.Application.DTOs.Basket;
 using HwStore.Domain;
 
 namespace HwStore.Application.Profiles
@@ -27,6 +27,14 @@ namespace HwStore.Application.Profiles
 
             CreateMap<Specification, SpecificationDto_Base>().ReverseMap();
             CreateMap<Specification, SpecificationDto_Upsert>().ReverseMap();
+
+            CreateMap<Basket, BasketDto_Base>().ReverseMap();
+            CreateMap<BasketItem, BasketItemDto>()
+                .ForMember(p => p.Quantity, opt => opt.MapFrom(src => src.Product.Quantity))
+                .ForMember(p => p.Price, opt => opt.MapFrom(src => src.Product.Price))
+                .ForMember(p => p.Name, opt => opt.MapFrom(src => src.Product.Name))
+                .ForMember(p => p.ImageUrl, opt => opt.MapFrom(src => src.Product.Images.First().Path));
+                                    
         }
     }
 }

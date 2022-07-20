@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HwStore.Application", "HwSt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HwStore.Domain", "HwStore.Domain\HwStore.Domain.csproj", "{133E7939-9FD7-4FEE-94D9-859BE51CA8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity", "Identity\Identity.csproj", "{45D0D02A-6FB4-4F03-B601-5B8A49510560}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{45D0D02A-6FB4-4F03-B601-5B8A49510560}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
