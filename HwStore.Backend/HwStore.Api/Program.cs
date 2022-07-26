@@ -52,14 +52,7 @@ builder.Host.UseSerilog((context, config) =>
     config.WriteTo.Console();
 
 });
-builder.Services.AddCors(options => options
-    .AddPolicy("allowSpecificOrigin", policy =>
-    {
-        policy.AllowAnyHeader();
-        policy.AllowAnyMethod();
-        policy.AllowCredentials();
-        policy.WithOrigins("http://localhost:3000");
-    }));
+
 
 var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
@@ -69,7 +62,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors("allowSpecificOrigin");
+app.UseCors(opt =>
+{
+    opt
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .WithOrigins("http://localhost:3000")
+    .AllowCredentials();
+});
 app.UseHttpsRedirection();
 app.UseAuthentication();
 

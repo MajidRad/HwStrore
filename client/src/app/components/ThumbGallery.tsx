@@ -26,7 +26,7 @@ export default function ThumbGallery({ images }: Props) {
         aria-disabled={true}
         loop={true}
         spaceBetween={10}
-        navigation={true}
+        navigation={images && images?.length < 2 ? false : true}
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}

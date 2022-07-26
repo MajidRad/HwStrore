@@ -21,7 +21,7 @@ namespace HwStore.Application.DTOs.Basket.Validators
                 .MustAsync(async (b, token) =>
             {
                 var product = await _unitOfWork.ProductRepository.GetFirstOrDefault(x => x.Id == b.productId);
-                if (product.Quantity >= b.quantity) return true;
+                if (b.quantity<=product.Quantity) return true;
                 return false;
             }).WithMessage("{PropertyName} must be less than or equal Stock quantity ");
                 

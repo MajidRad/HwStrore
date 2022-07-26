@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HwStore.Application.Features.Baskets.Requsts.Commands
 {
-    public class AddToBasketItemRequest : IRequest<Result<Unit>>
+    public class AddToBasketItemRequest : IRequest<Result<BasketDto_Base>>
     {
       public BasketDto_Param AddToBasket { get; set; }
     }

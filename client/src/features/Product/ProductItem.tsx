@@ -9,10 +9,17 @@ import { Product } from "../../app/model/Product";
 import { Box, IconButton, Rating } from "@mui/material";
 import { AddShoppingCartRounded } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
+import { useAppDispatch } from "../../app/store/configureStore";
+import { addBasketItemAsync } from "../basket/basketSlice";
 interface Props {
   product: Product;
 }
 const ProductItem = ({ product }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const handleAddBasket = () => {
+    dispatch(addBasketItemAsync({ productId: product.id, quantity: 1 }));
+  };
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Box
@@ -23,8 +30,7 @@ const ProductItem = ({ product }: Props) => {
         <CardMedia
           component="img"
           height="250"
-
-          image={product.images&&`/${product.images[0].path}.jpg`}
+          image={product.images && `/${product.images[0].path}.jpg`}
           alt={`${product.name}`}
         />
         <CardContent>
@@ -44,7 +50,7 @@ const ProductItem = ({ product }: Props) => {
       </Box>
       <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
         <Button size="small">Learn More</Button>
-        <IconButton>
+        <IconButton onClick={handleAddBasket}>
           <AddShoppingCartRounded />
         </IconButton>
       </CardActions>

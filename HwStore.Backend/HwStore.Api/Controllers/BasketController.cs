@@ -1,4 +1,5 @@
-﻿using HwStore.Application.DTOs.Basket;
+﻿using HwStore.Application.Core;
+using HwStore.Application.DTOs.Basket;
 using HwStore.Application.Features.Baskets.Requsts.Commands;
 using HwStore.Application.Features.Baskets.Requsts.Queries;
 using HwStore.Domain;
@@ -15,18 +16,21 @@ namespace HwStore.Api.Controllers
     [ApiController]
     public class BasketController : BaseApiController
     {
+      
 
         public BasketController(IMediator mediator) : base(mediator) { }
 
-        [HttpGet("GetBasket")]
+
+    [HttpGet("GetBasket")]
         public async Task<ActionResult<BasketDto_Base>> GetBasket()
         {
+           
             var buyerId = Request.Cookies["buyerId"];
             var basket = await Mediator.Send(new GetBasketRequest() { buyerId = buyerId });
             return HandleResult(basket);
         }
         [HttpPost("AddItem")]
-        public async Task<ActionResult> AddItemToBasket(int productId, int quantity)
+        public async Task<ActionResult<BasketDto_Base>> AddItemToBasket(int productId, int quantity)
         {
             var basketDto_param = new BasketDto_Param() { productId = productId, quantity = quantity };
             var result = await Mediator.Send(new AddToBasketItemRequest 
@@ -34,8 +38,16 @@ namespace HwStore.Api.Controllers
             return HandleResult(result);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> RemoveBasketItem(int productId, int quantity)
+        [HttpPut("UpdateBasket")]
+        public async Task<ActionResult<BasketDto_Base>> UpdateBasketItem(string buyerId, int productId,int quantity)
+        {
+            var basketDto_param = new BasketDto_Param() { productId = productId, quantity = quantity };
+            var result = await Mediator.Send(new UpdateBasketRequest { Params = basketDto_param ,buyerId=buyerId});
+            return HandleResult(result);
+        }
+
+        [HttpDelete("RemoveItem")]
+        public async Task<ActionResult<BasketDto_Base>> RemoveBasketItem(int productId, int quantity)
         {
             var basketDto_param = new BasketDto_Param { productId = productId, quantity = quantity };
             var result = await Mediator.Send(new RemoveBasketItemRequest { basketDto_Param = basketDto_param });

@@ -24,6 +24,7 @@ import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
+import Basket from "../../features/basket/Basket";
 
 const Header = () => {
   const [anchorElNav, setaAnchorElNav] = useState<null | HTMLElement>(null);
@@ -38,7 +39,9 @@ const Header = () => {
     setaAnchorElNav(null);
   };
   const glassyStyle: SxProps = {
-    bgcolor: "rgba(233,222,250,0.3)",
+
+    background:
+      "linear-gradient(180deg, rgba(44,62,80,0.4) 0%, rgba(189,195,199,0.2) 100%)",
     backdropFilter: "blur(15px)",
     // boxShadow: "none",
     position: "sticky",
@@ -46,13 +49,7 @@ const Header = () => {
   };
   return (
     <AppBar elevation={1} sx={{ ...glassyStyle }}>
-      <Container
-        maxWidth="xl"
-        sx={{
-          background:
-            "linear-gradient(180deg, rgba(44,62,80,0.4) 0%, rgba(189,195,199,0.2) 100%);",
-        }}
-      >
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
           <CurrencyBitcoinOutlined
             sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
@@ -135,10 +132,13 @@ const Header = () => {
               </Button>
             ))}
           </Box>
+          <Box>
+            <Basket />
+          </Box>
           {User ? (
             <SignedInMenu />
           ) : (
-            <Box sx={{ flexGrow: 0, display: "flex" }}>
+            <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
               <Button
                 component={RouterLink}
                 to="/login"

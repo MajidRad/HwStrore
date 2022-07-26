@@ -1,16 +1,11 @@
-import { MergeTypeOutlined, Sd, StarRate } from "@mui/icons-material";
 import {
   Box,
-  Button,
   Divider,
   Grid,
-  IconButton,
-  Paper,
   Rating,
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableRow,
   Typography,
 } from "@mui/material";
@@ -18,9 +13,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { fetchProductDetail, productSelector } from "./productSlice";
-import { grey, teal } from "@mui/material/colors";
-import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
+import { teal } from "@mui/material/colors";
 import ThumbGallery from "../../app/components/ThumbGallery";
+import { LoadingButton } from "@mui/lab";
+import QuantitySelector from "../../app/components/QuantitySelector";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,9 +31,6 @@ const ProductDetails = () => {
     }
   }, [dispatch]);
 
-  const Item: React.FC<Props> = ({ children }) => {
-    return <Paper sx={{ backgroundColor: grey[400] }}>{children}</Paper>;
-  };
   const [qty, setQty] = useState(0);
   return (
     <Grid container sx={{ my: 2 }} columnSpacing={2} rowSpacing={4}>
@@ -78,24 +71,11 @@ const ProductDetails = () => {
             }}
           >
             <Typography variant="h6">{productDetails?.price}$</Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <IconButton>
-                <AddCircleOutline />
-              </IconButton>
-              <Typography sx={{ mx: 2 }}>{qty}</Typography>
-              <IconButton>
-                <RemoveCircleOutline />
-              </IconButton>
-            </Box>
+            <QuantitySelector prodId={productDetails && productDetails?.id} />
           </Box>
-          <Button fullWidth variant="contained">
+          <LoadingButton fullWidth variant="contained">
             Add To Basket
-          </Button>
+          </LoadingButton>
         </Box>
       </Grid>
       <Grid item xs={12} md={4}>
@@ -120,12 +100,12 @@ const ProductDetails = () => {
         <Table>
           <TableBody>
             {productDetails?.specifications?.map((item) => (
-              <>
+              <React.Fragment key={item.id}>
                 <TableRow>
                   <TableCell>{item.specLabel}</TableCell>
                   <TableCell>{item.specValue}</TableCell>
                 </TableRow>
-              </>
+              </React.Fragment>
             ))}
           </TableBody>
         </Table>
