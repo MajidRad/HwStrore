@@ -1,8 +1,9 @@
-import { IconButton, Tooltip } from "@mui/material";
+import { Badge, IconButton, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import { ShoppingCart } from "@mui/icons-material";
 import PopOverBasket from "./PopOverBasket";
 import { useAppSelector } from "../../app/store/configureStore";
+
 export interface BasketDialogProps {
   open: boolean;
   selectedValue: string;
@@ -12,7 +13,10 @@ export interface BasketDialogProps {
 const Basket = () => {
   const { basket } = useAppSelector((state) => state.basket);
   // if (!basket) return <Typography>Your Basket is Empty</Typography>;
-
+  const itemCount = basket?.basketItems.reduce(
+    (sum, item) => sum + item.quantityInBasket,
+    0
+  );
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isAnimate, setIsAnimate] = useState(false);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -27,7 +31,9 @@ const Basket = () => {
     <>
       <Tooltip title="Basket" sx={{ mx: 2 }}>
         <IconButton color="inherit" onClick={handleClick} size="large">
-          <ShoppingCart />
+          <Badge badgeContent={itemCount}>
+            <ShoppingCart />
+          </Badge>
         </IconButton>
       </Tooltip>
       <PopOverBasket

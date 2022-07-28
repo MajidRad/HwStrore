@@ -1,21 +1,11 @@
 import { CloseRounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { motion } from "framer-motion";
-import { scaleVariant, slideVariant } from "../../app/util/animateVariant";
-import {
-  Popover,
-  Divider,
-  Box,
-  Typography,
-  IconButton,
-  Grid,
-} from "@mui/material";
-import React, { useState } from "react";
-import { cyan } from "@mui/material/colors";
-import QuantitySelector from "../../app/components/QuantitySelector";
-
+import { Popover, Box, Typography, IconButton } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { teal } from "@mui/material/colors";
 import { BasketItem } from "../../app/model/Basket";
 import PopOverItem from "./PopOverItem";
+import { Link as routerLink } from "react-router-dom";
 
 interface Props {
   handleClose: () => void;
@@ -33,6 +23,30 @@ const PopOverBasket = ({
   isAnimate,
   items,
 }: Props) => {
+  useEffect(() => {
+    basketSummary();
+    popoverHeight();
+  }, [basketSummary, popoverHeight]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [height, setHeight] = useState(200);
+
+  function popoverHeight() {
+    if (items) items?.length > 1 ? setHeight(350) : setHeight(200);
+  }
+
+  function basketSummary() {
+    let prices: number[] = [];
+    if (items !== undefined) {
+      for (const item of items) {
+        let price = item.price * item.quantityInBasket;
+        prices.push(price);
+      }
+
+      prices.length > 1 &&
+        setTotalPrice(prices.reduce((prev, cur) => prev + cur));
+    }
+  }
+
   return (
     <Popover
       open={open}
@@ -51,8 +65,8 @@ const PopOverBasket = ({
       <Box
         sx={{
           m: 2,
-          height: "300px",
-          width: "300px",
+          height: `${height}px`,
+          width: "320px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -65,7 +79,9 @@ const PopOverBasket = ({
             justifyContent: "space-between",
           }}
         >
-          <Typography variant="h6">Basket Items</Typography>
+          <Typography variant="h6" color={`${teal[300]}`}>
+            Basket TotalPrice: {totalPrice}$
+          </Typography>
           <IconButton onClick={handleClose}>
             <CloseRounded />
           </IconButton>
@@ -74,7 +90,12 @@ const PopOverBasket = ({
           <PopOverItem item={item} key={item.productId} />
         ))}
 
-        <LoadingButton fullWidth variant="contained">
+        <LoadingButton
+          component={routerLink}
+          to="/checkout"
+          fullWidth
+          variant="contained"
+        >
           CheckOut
         </LoadingButton>
       </Box>

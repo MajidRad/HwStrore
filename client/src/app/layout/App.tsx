@@ -24,6 +24,10 @@ import ProductDetails from "../../features/Product/ProductDetails";
 import { fetchBasketAsync } from "../../features/basket/basketSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ServerError from "../../features/Errors/ServerError";
+import NotFoundError from "../../features/Errors/NotFoundError";
+import Checkout from "../../features/checkout/Checkout";
+
 export const history = createBrowserHistory({ window });
 const NavLayout = () => (
   <>
@@ -68,7 +72,10 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/products" element={<ProductList />} />
-            <Route path="Products/:id" element={<ProductDetails />} />
+            <Route path="/products/:id" element={<ProductDetails />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/notFound" element={<NotFoundError />} />
+            <Route path="/serverError" element={<ServerError />} />
           </Route>
         </Routes>
       </HistoryRouter>

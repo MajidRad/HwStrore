@@ -1,5 +1,11 @@
 import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
-import { Box, IconButton, SxProps, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  IconButton,
+  SxProps,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
 import { updateBasketItemAsync } from "../../features/basket/basketSlice";
 import { BasketItem } from "../model/Basket";
@@ -10,7 +16,7 @@ interface Props {
   prodId?: number;
 }
 const QuantitySelector = ({ prodId, sxProp }: Props) => {
-  const { basket } = useAppSelector((state) => state.basket);
+  const { basket, status } = useAppSelector((state) => state.basket);
 
   const dispatch = useAppDispatch();
   const item: BasketItem | undefined = basket
@@ -56,7 +62,11 @@ const QuantitySelector = ({ prodId, sxProp }: Props) => {
       >
         <RemoveCircleOutline />
       </IconButton>
-      <Typography sx={{ mx: 2 }}>{item?.quantityInBasket}</Typography>
+      {status.includes("pending") ? (
+        <CircularProgress />
+      ) : (
+        <Typography sx={{ mx: 2 }}>{item?.quantityInBasket ?? 1}</Typography>
+      )}
       <IconButton
         disabled={checkStockQty()}
         onClick={(name) => handleCountLogic("increment")}

@@ -2,6 +2,7 @@ import {
   Box,
   Divider,
   Grid,
+  IconButton,
   Rating,
   Table,
   TableBody,
@@ -17,21 +18,63 @@ import { teal } from "@mui/material/colors";
 import ThumbGallery from "../../app/components/ThumbGallery";
 import { LoadingButton } from "@mui/lab";
 import QuantitySelector from "../../app/components/QuantitySelector";
-
+import {
+  addBasketItemAsync,
+  removeBasketItemAsync,
+} from "../basket/basketSlice";
+import { BasketItem } from "../../app/model/Basket";
+import { Delete } from "@mui/icons-material";
+import ProductItem from "./ProductItem";
+import LoadingBackdrop from "../../app/layout/LoadingBackdrop";
 const ProductDetails = () => {
+  const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
+  const [basketItem, setBasketItem] = useState<BasketItem>();
+  const [displayAddBasket, setDisplayAddBasket] = useState(true);
+
+  const { basket, status } = useAppSelector((state) => state.basket);
   const productDetails = useAppSelector((state) =>
     productSelector.selectById(state, id ? id : -1)
   );
-  const dispatch = useAppDispatch();
+
   type Props = { children?: JSX.Element | JSX.Element[] };
+
   useEffect(() => {
     if (id !== undefined) {
       dispatch(fetchProductDetail(parseInt(id)));
     }
   }, [dispatch]);
 
-  const [qty, setQty] = useState(0);
+  useEffect(() => {
+    if (productDetails) {
+      const item = basket?.basketItems.find(
+        (x) => x.productId === productDetails.id
+      );
+      setBasketItem(item);
+      if (basketItem) setDisplayAddBasket(false);
+    }
+  }, [basket]);
+
+  function addToBasket() {
+    if (productDetails) {
+      const productId = productDetails?.id;
+      dispatch(addBasketItemAsync({ productId }));
+      setDisplayAddBasket(false);
+    }
+  }
+
+  function handleRemove() {
+    if (basketItem)
+      dispatch(
+        removeBasketItemAsync({
+          productId: basketItem?.productId,
+        })
+      );
+    setBasketItem(undefined);
+    setDisplayAddBasket(true);
+  }
+  if ((status === "pending"))
+    return <LoadingBackdrop message="Loading product detail" />;
   return (
     <Grid container sx={{ my: 2 }} columnSpacing={2} rowSpacing={4}>
       <Grid item xs={12} md={4}>
@@ -71,11 +114,37 @@ const ProductDetails = () => {
             }}
           >
             <Typography variant="h6">{productDetails?.price}$</Typography>
-            <QuantitySelector prodId={productDetails && productDetails?.id} />
           </Box>
-          <LoadingButton fullWidth variant="contained">
-            Add To Basket
-          </LoadingButton>
+          {displayAddBasket ? (
+            <LoadingButton
+              loading={status.includes("pending")}
+              onClick={addToBasket}
+              fullWidth
+              variant="contained"
+            >
+              Add To Basket
+            </LoadingButton>
+          ) : (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <QuantitySelector prodId={parseInt(id!)} />
+              <Typography> {basketItem?.quantityInBasket} Unit =</Typography>
+              <Typography>
+                {basketItem
+                  ? basketItem?.quantityInBasket * basketItem?.price
+                  : 0}
+                $
+              </Typography>
+              <IconButton onClick={handleRemove}>
+                <Delete />
+              </IconButton>
+            </Box>
+          )}
         </Box>
       </Grid>
       <Grid item xs={12} md={4}>

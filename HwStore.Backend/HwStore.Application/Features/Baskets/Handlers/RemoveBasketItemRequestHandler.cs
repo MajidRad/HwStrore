@@ -27,17 +27,12 @@ namespace HwStore.Application.Features.Baskets.Handlers
         }
 
 
-       async Task<Result<BasketDto_Base>> IRequestHandler<RemoveBasketItemRequest, Result<BasketDto_Base>>.Handle(RemoveBasketItemRequest request, CancellationToken cancellationToken)
+        async Task<Result<BasketDto_Base>> IRequestHandler<RemoveBasketItemRequest, Result<BasketDto_Base>>.Handle(RemoveBasketItemRequest request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.ProductRepository.Exist(x => x.Id == request.basketDto_Param.productId);
             if (!product) return Result<BasketDto_Base>.Failure("productId is not valid");
 
-            var validator = new BasketParamsValidator(_unitOfWork);
-            var validateResult = await validator.ValidateAsync(request.basketDto_Param);
-            if (!validateResult.IsValid)
-            {
-                return Result<BasketDto_Base>.Failure(validateResult.Errors.Select(x => x.ErrorMessage).ToList());
-            }
+          
             var buyerId = _basketAccessor.GetBuyerId();
             var basket = await _unitOfWork.BasketRepository.GetBasket(buyerId);
             if (basket == null) return Result<BasketDto_Base>.Failure("Basket NotFound");
@@ -45,15 +40,7 @@ namespace HwStore.Application.Features.Baskets.Handlers
             var mappedBasket = _mapper.Map<Basket>(basket);
             if (mappedBasket.BasketItems == null) return Result<BasketDto_Base>.Failure("BaskeItemsIsEmpty");
             var existProduct = mappedBasket.BasketItems.FirstOrDefault(item => item.ProductId == request.basketDto_Param?.productId);
-            if (existProduct == null) return Result<BasketDto_Base>.Failure("Product Not Found");
-            if (existProduct.QuantityInBasket > 1)
-            {
-                existProduct.QuantityInBasket -= request.basketDto_Param.quantity;
-            }
-            else if (existProduct.QuantityInBasket == 1 || request.basketDto_Param.quantity > existProduct.QuantityInBasket)
-            {
-                mappedBasket.BasketItems.Remove(existProduct);
-            }
+            if (existProduct == null) return Result<BasketDto_Base>.Failure("Product Not Found"); mappedBasket.BasketItems.Remove(existProduct);
             await _unitOfWork.SaveAsync();
             var mappedToBasketDto = _mapper.Map<BasketDto_Base>(mappedBasket);
             return Result<BasketDto_Base>.Success(mappedToBasketDto);

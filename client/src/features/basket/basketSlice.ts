@@ -1,9 +1,19 @@
-import { createAsyncThunk, createSlice, isAnyOf } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  createAsyncThunk,
+  createSlice,
+  isAnyOf,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+import { store } from "../../app/store/configureStore";
 
 import agent from "../../app/api/agent";
 import { Basket } from "../../app/model/Basket";
 import { getCookie } from "../../app/util/util";
-
+type basketCheck = {
+  allowIncrement: boolean;
+  allowDecrement: boolean;
+};
 interface BasketState {
   basket: Basket | null;
   status: string;
@@ -29,10 +39,10 @@ export const fetchBasketAsync = createAsyncThunk<Basket>(
 );
 export const addBasketItemAsync = createAsyncThunk<
   Basket,
-  { productId: number; quantity: number }
->("basket/addBasketItem", async ({ productId, quantity }, thunkAPI) => {
+  { productId: number }
+>("basket/addBasketItem", async ({ productId }, thunkAPI) => {
   try {
-    var basket = await agent.Basket.addItem(productId, quantity);
+    var basket = await agent.Basket.addItem(productId);
 
     return basket;
   } catch (error: any) {
@@ -52,10 +62,10 @@ export const updateBasketItemAsync = createAsyncThunk<
 });
 export const removeBasketItemAsync = createAsyncThunk<
   Basket,
-  { productId: number; quantity: number }
->("basket/removeItemAsync", async ({ productId, quantity }, thunkAPI) => {
+  { productId: number }
+>("basket/removeItemAsync", async ({ productId }, thunkAPI) => {
   try {
-    return await agent.Basket.removeItem(productId, quantity);
+    return await agent.Basket.removeItem(productId);
   } catch (err: any) {
     return thunkAPI.rejectWithValue({ error: err.data });
   }
@@ -77,17 +87,10 @@ export const basketSlice = createSlice({
       state.status = "pending";
     });
     builder.addCase(removeBasketItemAsync.fulfilled, (state, action) => {
-      const { productId, quantity } = action.meta.arg;
       state.status = "idle";
-      let existProduct = state.basket?.basketItems.findIndex(
-        (x) => x.productId === productId
-      );
-      if (existProduct === undefined || existProduct === -1) return;
-      if (state.basket) {
-        state.basket.basketItems[existProduct].quantityInBasket -= quantity;
-      }
       state.basket = action.payload;
     });
+    builder.addCase(addBasketItemAsync.fulfilled, (state, action) => {});
     builder.addMatcher(
       isAnyOf(addBasketItemAsync.pending, updateBasketItemAsync.pending),
       (state, action) => {

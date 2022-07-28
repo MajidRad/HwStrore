@@ -4,6 +4,8 @@ import { ErrorResponse } from "../model/ErrorResponse";
 import { store } from "../store/configureStore";
 import { history } from "../layout/App";
 import { URLSearchParams } from "url";
+import { PaginatedResponse } from "../model/MetaData";
+import { json } from "stream/consumers";
 
 axios.defaults.baseURL = "http://localhost:5000/api/";
 axios.defaults.withCredentials = true;
@@ -16,7 +18,13 @@ axios.interceptors.request.use((config: any) => {
 
 axios.interceptors.response.use(
   (response: AxiosResponse) => {
-    console.log(response.data);
+    const pagination = response.headers["pagination"];
+    if (pagination) {
+      response.data = new PaginatedResponse(
+        response.data,
+        JSON.parse(pagination)
+      );
+    }
     return response;
   },
   (error: ErrorResponse) => {
@@ -41,10 +49,10 @@ axios.interceptors.response.use(
         toast.error("You are not allow to do that!");
         break;
       case 404:
-        toast.error(data.title);
+        history.push("/notFound", error);
         break;
       case 500:
-        history.push("/server-error", error);
+        history.push("/serverError", error);
         break;
       default:
         break;
@@ -72,10 +80,8 @@ const Basket = {
       `Basket/AddItem?productId=${productId}&quantity=${quantity}`,
       {}
     ),
-  removeItem: (productId: number, quantity: number = 1) =>
-    request.delete(
-      `Basket/RemoveItem?productId=${productId}&quantity=${quantity}`
-    ),
+  removeItem: (productId: number) =>
+    request.delete(`Basket/RemoveItem?productId=${productId}`),
   updateItem: (buyerId: string, productId: number, quantity: number) =>
     request.put(
       `Basket/UpdateBasket?buyerId=${buyerId}&productId=${productId}&quantity=${quantity}`,

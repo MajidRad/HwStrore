@@ -18,7 +18,7 @@ const ProductItem = ({ product }: Props) => {
   const dispatch = useAppDispatch();
 
   const handleAddBasket = () => {
-    dispatch(addBasketItemAsync({ productId: product.id, quantity: 1 }));
+    dispatch(addBasketItemAsync({ productId: product.id }));
   };
   return (
     <Card sx={{ maxWidth: 345 }}>

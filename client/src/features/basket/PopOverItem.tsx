@@ -15,15 +15,16 @@ interface Props {
 const PopOverItem = ({ item }: Props) => {
   const dispatch = useAppDispatch();
   const [isRemoved, setRemoved] = useState(false);
+
   const handleRemove = () => {
     setRemoved(true);
     dispatch(
       removeBasketItemAsync({
         productId: item.productId,
-        quantity: item.quantityInBasket,
       })
     );
   };
+
   return (
     <Grid
       component={motion.div}
@@ -35,6 +36,7 @@ const PopOverItem = ({ item }: Props) => {
       sx={{
         boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
         borderRadius: "20px",
+        mb: 2,
       }}
     >
       <Grid item xs={2} sx={{ my: "auto" }}>

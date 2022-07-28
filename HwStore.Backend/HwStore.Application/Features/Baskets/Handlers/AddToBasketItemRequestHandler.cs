@@ -46,16 +46,10 @@ namespace HwStore.Application.Features.Baskets.Handlers
             var product = await _unitOfWork.ProductRepository
               .GetFirstOrDefault(x => x.Id == request.AddToBasket.productId);
             if (product == null) return Result<BasketDto_Base>.Failure("ProductId not valid");
-            var validator = new BasketParamsValidator(_unitOfWork);
-            var validationResult = await validator.ValidateAsync(request.AddToBasket);
-            if (!validationResult.IsValid)
-            {
-                var res = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
-                return Result<BasketDto_Base>.Failure(res);
-            }
 
             var buyerId = _basketAccessor.GetBuyerId();
             var basket = await _unitOfWork.BasketRepository.GetBasket(buyerId);
+
             if (basket == null)
             {
                 basket = CreateBasket(buyerId);
@@ -66,7 +60,7 @@ namespace HwStore.Application.Features.Baskets.Handlers
                 basket.BasketItems.Add(new BasketItem { Product = product, QuantityInBasket = request.AddToBasket.quantity });
             }
             var existingItem = basket.BasketItems.FirstOrDefault(x => x.ProductId == request.AddToBasket.productId);
-            if (existingItem != null) existingItem.QuantityInBasket += request.AddToBasket.quantity;
+            if (existingItem != null) existingItem.QuantityInBasket = 1;
 
             await _unitOfWork.SaveAsync();
             var mappedBasket = _mapper.Map<BasketDto_Base>(basket);
