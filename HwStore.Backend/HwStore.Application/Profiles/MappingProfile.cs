@@ -33,7 +33,7 @@ namespace HwStore.Application.Profiles
                 .ForMember(p => p.Quantity, opt => opt.MapFrom(src => src.Product.Quantity))
                 .ForMember(p => p.Price, opt => opt.MapFrom(src => src.Product.Price))
                 .ForMember(p => p.Name, opt => opt.MapFrom(src => src.Product.Name))
-                .ForMember(p => p.ImageUrl, opt => opt.MapFrom(src => src.Product.Images.First().Path));
+                .ForMember(p => p.ImageUrl, opt => opt.MapFrom(src => src.Product.Images.First().Path)).ReverseMap();
                                     
         }
     }

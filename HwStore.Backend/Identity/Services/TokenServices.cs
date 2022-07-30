@@ -20,7 +20,7 @@ namespace Identity.Services
         private readonly IConfiguration _config;
         private readonly JwtSettings _jwtSettings;
 
-        public TokenServices(UserManager<ApplicationUser> userManager,IOptions<JwtSettings> jwtSettings)
+        public TokenServices(UserManager<ApplicationUser> userManager, IOptions<JwtSettings> jwtSettings)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings.Value;
@@ -33,7 +33,7 @@ namespace Identity.Services
                 new Claim (ClaimTypes.NameIdentifier,user.Id),
                 new Claim (ClaimTypes.Name,user.UserName)
             };
-            var roles =await _userManager.GetRolesAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
@@ -46,8 +46,9 @@ namespace Identity.Services
                 Expires = DateTime.Now.AddMinutes(_jwtSettings.DurationInMinutes),
                 SigningCredentials = creds,
                 Issuer = _jwtSettings.Issuer,
-                Audience=_jwtSettings.Audience
+                Audience = _jwtSettings.Audience
             };
+    
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);

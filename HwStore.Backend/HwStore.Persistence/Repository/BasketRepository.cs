@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HwStore.Application.Contract.Persistence;
+using HwStore.Application.DTOs.Basket;
 using HwStore.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace HwStore.Persistence.Repository
         }
         public async Task<Basket> GetBasket(string? buyerId)
         {
+           
             var basket = await _db.Baskets
                 .Include(p => p.BasketItems)
                 .ThenInclude(p => p.Product)
@@ -30,14 +32,12 @@ namespace HwStore.Persistence.Repository
             return basket;
         }
 
-        public Task RemoveBasket()
+        public async Task UpdateBasket(BasketDto_Base basket)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveItem()
-        {
-            throw new NotImplementedException();
+            var basketFromDb = _db.Baskets.FirstOrDefault(x => x.Id == basket.Id);
+            basketFromDb.BuyerId = basket.BuyerId;
+            _db.Baskets.Update(basketFromDb);
+            await _db.SaveChangesAsync();
         }
     }
 }

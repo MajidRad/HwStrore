@@ -55,7 +55,13 @@ namespace Identity.Services
             };
             return response;
         }
-
+        public async Task<ApplicationUser> GetUser(AuthRequest request)
+        {
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            var checkPass = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (checkPass) return user;
+            return null;
+        }
         public async Task<RegisterationResponse> Register(RegistarationRequest request)
         {
             var existedUser = await _userManager.FindByEmailAsync(request.Email);

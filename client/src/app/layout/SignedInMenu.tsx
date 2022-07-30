@@ -11,12 +11,14 @@ import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/configureStore";
 import { signOut } from "../../features/account/accountSlice";
 import { Logout } from "@mui/icons-material";
+import { clearBasket } from "../../features/basket/basketSlice";
 
 const SignedInMenu = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const settings = ["Profile", "Orders", "Logout"];
   const dispatch = useAppDispatch();
   const { User } = useAppSelector((state) => state.account);
+
   const navigate = useNavigate();
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -26,6 +28,7 @@ const SignedInMenu = () => {
   };
   const logOut = () => {
     dispatch(signOut());
+    dispatch(clearBasket());
     navigate("/");
   };
   return (

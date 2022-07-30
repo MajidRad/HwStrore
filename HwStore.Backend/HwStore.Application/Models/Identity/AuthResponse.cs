@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HwStore.Application.DTOs.Basket;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ public class AuthResponse
 		public string? Email { get; set; }
 		public string? UserName { get; set; }
 		public string? Token { get; set; }
+		public BasketDto_Base? Basket { get; set; }
 	}
 }

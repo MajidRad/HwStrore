@@ -39,8 +39,10 @@ namespace HwStore.Application.Features.Baskets.Handlers
 
             var mappedBasket = _mapper.Map<Basket>(basket);
             if (mappedBasket.BasketItems == null) return Result<BasketDto_Base>.Failure("BaskeItemsIsEmpty");
+
             var existProduct = mappedBasket.BasketItems.FirstOrDefault(item => item.ProductId == request.basketDto_Param?.productId);
             if (existProduct == null) return Result<BasketDto_Base>.Failure("Product Not Found"); mappedBasket.BasketItems.Remove(existProduct);
+
             await _unitOfWork.SaveAsync();
             var mappedToBasketDto = _mapper.Map<BasketDto_Base>(mappedBasket);
             return Result<BasketDto_Base>.Success(mappedToBasketDto);

@@ -1,4 +1,5 @@
-﻿using HwStore.Domain;
+﻿using HwStore.Application.DTOs.Basket;
+using HwStore.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,6 @@ namespace HwStore.Application.Contract.Persistence
     public interface IBasketRepository:IGenricRepository<Basket>
     {
         Task<Basket> GetBasket(string buyierId);
-
-     
-        Task RemoveItem();
-
-        Task RemoveBasket();
-
+        Task UpdateBasket(BasketDto_Base basket);
     }
 }

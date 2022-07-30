@@ -12,6 +12,7 @@ namespace HwStore.Application.Contract.Identity
 	{
 		public Task<AuthResponse> Login(AuthRequest request);
 		public Task<RegisterationResponse> Register(RegistarationRequest request);
-		public Task<ApplicationUser> GetCurrentUser();		
+		public Task<ApplicationUser> GetCurrentUser();
+		public Task<ApplicationUser> GetUser(AuthRequest request);
 	}
 }

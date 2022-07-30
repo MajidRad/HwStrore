@@ -4,9 +4,11 @@ using HwStore.Application.Features.Baskets.Requsts.Commands;
 using HwStore.Application.Features.Baskets.Requsts.Queries;
 using HwStore.Domain;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using System.Text.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -24,7 +26,8 @@ namespace HwStore.Api.Controllers
     [HttpGet("GetBasket")]
         public async Task<ActionResult<BasketDto_Base>> GetBasket()
         {
-            var buyerId = Request.Cookies["buyerId"];
+         
+            var buyerId = getBuyerId();
             var basket = await Mediator.Send(new GetBasketRequest() { buyerId = buyerId });
             return HandleResult(basket);
         }
@@ -44,7 +47,7 @@ namespace HwStore.Api.Controllers
             var result = await Mediator.Send(new UpdateBasketRequest { Params = basketDto_param ,buyerId=buyerId});
             return HandleResult(result);
         }
-
+        [Authorize]
         [HttpDelete("RemoveItem")]
         public async Task<ActionResult<BasketDto_Base>> RemoveBasketItem(int productId)
         {
@@ -53,6 +56,11 @@ namespace HwStore.Api.Controllers
             
             return HandleResult(result);
         }
-
+        private string getBuyerId()
+        {
+            var cookieBuyerId = Request.Cookies["buyerId"];
+            var userBuyerId = User.Identity.Name;
+            return userBuyerId ?? cookieBuyerId;
+        }
     }
 }

@@ -78,7 +78,7 @@ export const basketSlice = createSlice({
     setBasket: (state, action) => {
       state.basket = action.payload;
     },
-    clearBasket: (state, action) => {
+    clearBasket: (state) => {
       state.basket = null;
     },
   },
@@ -121,3 +121,4 @@ export const basketSlice = createSlice({
     );
   },
 });
+export const { clearBasket, setBasket } = basketSlice.actions;
