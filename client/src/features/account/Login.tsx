@@ -15,14 +15,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAppDispatch } from "../../app/store/configureStore";
 import { signInUser } from "./accountSlice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 interface IFormInputs {
   email: string;
   password: string;
 }
-
+type LocationProps = {
+  state: {
+    from: Location;
+  };
+};
 const Login = () => {
+  let location = useLocation() as unknown as LocationProps;
+
   const navigate = useNavigate();
   const schema = yup.object({
     email: yup.string().required(),
@@ -36,7 +42,8 @@ const Login = () => {
   } = useForm<IFormInputs>({ resolver: yupResolver(schema), mode: "all" });
   const submitForm = async (data: FieldValues) => {
     await dispatch(signInUser(data));
-    navigate("/");
+    let from = location.state?.from?.pathname || "/";
+    navigate(from, { replace: true });
   };
 
   return (

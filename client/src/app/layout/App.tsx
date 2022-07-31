@@ -27,6 +27,7 @@ import "react-toastify/dist/ReactToastify.css";
 import ServerError from "../../features/Errors/ServerError";
 import NotFoundError from "../../features/Errors/NotFoundError";
 import Checkout from "../../features/checkout/Checkout";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const history = createBrowserHistory({ window });
 const NavLayout = () => (
@@ -73,7 +74,16 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/products" element={<ProductList />} />
             <Route path="/products/:id" element={<ProductDetails />} />
-            <Route path="/checkout" element={<Checkout />} />
+
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+
             <Route path="/notFound" element={<NotFoundError />} />
             <Route path="/serverError" element={<ServerError />} />
           </Route>

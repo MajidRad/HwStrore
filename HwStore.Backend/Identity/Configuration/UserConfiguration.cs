@@ -12,17 +12,24 @@ namespace Identity.Configuration
 {
     public class UserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
-        
+
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            builder.HasOne(a => a.Address)
+                .WithOne()
+                .HasForeignKey<UserAddress>(a => a.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+        
+
             var hasher = new PasswordHasher<ApplicationUser>();
             builder.HasData(
                   new ApplicationUser
                   {
-                      Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                      Id = 1,
                       Email = "Majidrad@hotmail.com",
-                      UserName= "Majidrad@hotmail.com",
-                      Address = "Karaj",
+                      UserName = "Majidrad@hotmail.com",
+                      //Address = new UserAddress { },
                       NormalizedEmail = "MAJIDRAD@HOTMAIL.COM",
                       NormalizedUserName = "MAJIDRAD@HOTMAIL.COM",
                       PasswordHash = hasher.HashPassword(null, "Majid@123"),
@@ -30,7 +37,7 @@ namespace Identity.Configuration
                   },
                  new ApplicationUser
                  {
-                     Id = "9e224968-33e4-4652-b7b7-8574d048cdb9",
+                     Id =2,
                      Email = "test@test.com",
                      UserName = "test@test.com",
                      NormalizedEmail = "TEST@TEST.COM",
@@ -40,8 +47,8 @@ namespace Identity.Configuration
                  }
 
                 );
-              
-            
+
+
         }
     }
 }

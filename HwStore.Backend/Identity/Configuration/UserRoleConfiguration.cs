@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using HwStore.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace Identity.Configuration
 {
-    public class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>
+    public class UserRoleConfiguration : IEntityTypeConfiguration<ApplicationUserRole>
     {
-        public void Configure(EntityTypeBuilder<IdentityUserRole<string>> builder)
+        public void Configure(EntityTypeBuilder<ApplicationUserRole> builder)
         {
             builder.HasData(
-            new IdentityUserRole<string>
+            new IdentityUserRole<int>
             {
-                RoleId = "cbc43a8e-f7bb-4445-baaf-1add431ffbbf",
-                UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9"
+                RoleId =1,
+                UserId = 2,
             },
-            new IdentityUserRole<string>
+            new IdentityUserRole<int>
             {
-                RoleId = "cac43a6e-f7bb-4448-baaf-1add431ccbbf",
-                UserId = "9e224968-33e4-4652-b7b7-8574d048cdb9"
+                RoleId = 2,
+                UserId = 1
             });
         }
     }

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace HwStore.Domain
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
-        public string? Address { get; set; }
+        public UserAddress? Address { get; set; }
     }
 }

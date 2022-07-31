@@ -8,6 +8,6 @@ namespace HwStore.Application.Models.Identity
 {
 	public class RegisterationResponse
 	{
-		public string userId { get; set; }
+		public int userId { get; set; }
 	}
 }

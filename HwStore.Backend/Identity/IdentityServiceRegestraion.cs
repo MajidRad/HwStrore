@@ -29,7 +29,7 @@ namespace Identity
                 opt.Password.RequiredLength = 4;
                 opt.Password.RequireNonAlphanumeric = false;
             })
-            .AddRoles<IdentityRole>()
+            .AddRoles<ApplicationRole>()
             .AddEntityFrameworkStores<HwStoreIdentityDbContext>()
             .AddSignInManager<SignInManager<ApplicationUser>>()
             .AddDefaultTokenProviders();

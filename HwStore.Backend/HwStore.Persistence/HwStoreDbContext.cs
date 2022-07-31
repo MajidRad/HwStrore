@@ -1,5 +1,6 @@
 ﻿
 using HwStore.Domain;
+using HwStore.Domain.Order;
 using Microsoft.EntityFrameworkCore;
 
 namespace HwStore.Persistence
@@ -11,6 +12,7 @@ namespace HwStore.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(typeof(HwStoreDbContext).Assembly);
+           
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,6 +26,7 @@ namespace HwStore.Persistence
         public DbSet<Brand>? Brands { get; set; } = null!;
         public DbSet<Specification> Specifications { get; set; } = null!;
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
     }
 }

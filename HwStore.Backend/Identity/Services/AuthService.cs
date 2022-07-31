@@ -72,7 +72,7 @@ namespace Identity.Services
             var user = new ApplicationUser()
             {
                 Email = request.Email,
-                Address = request.Address,
+                //Address = request.Address,
                 UserName = request.UserName,
                 EmailConfirmed = true,
             };

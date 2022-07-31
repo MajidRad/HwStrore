@@ -10,7 +10,7 @@ using System.Reflection;
 
 namespace Identity
 {
-    public class HwStoreIdentityDbContext:IdentityDbContext<ApplicationUser>
+    public class HwStoreIdentityDbContext:IdentityDbContext<ApplicationUser,ApplicationRole,int>
     {
         public HwStoreIdentityDbContext(DbContextOptions options):base(options)
         {
