@@ -3,30 +3,29 @@ using HwStore.Domain;
 using HwStore.Domain.Order;
 using Microsoft.EntityFrameworkCore;
 
-namespace HwStore.Persistence
+namespace HwStore.Persistence;
+
+public class HwStoreDbContext : DbContext
 {
-    public class HwStoreDbContext : DbContext
+    public HwStoreDbContext(DbContextOptions<HwStoreDbContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder builder)
     {
-        public HwStoreDbContext(DbContextOptions<HwStoreDbContext> options) : base(options) { }
+        builder.ApplyConfigurationsFromAssembly(typeof(HwStoreDbContext).Assembly);
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfigurationsFromAssembly(typeof(HwStoreDbContext).Assembly);
-           
-
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.EnableSensitiveDataLogging();
-        }
-        public DbSet<Product>? Products { get; set; } = null!;
-        public DbSet<Image>? Images { get; set; } = null!;
-
-        public DbSet<Category>? Categories { get; set; } = null!;
-        public DbSet<Brand>? Brands { get; set; } = null!;
-        public DbSet<Specification> Specifications { get; set; } = null!;
-        public DbSet<Basket> Baskets { get; set; }
-        public DbSet<Order> Orders { get; set; }
 
     }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.EnableSensitiveDataLogging();
+    }
+    public DbSet<Product>? Products { get; set; } = null!;
+    public DbSet<Image>? Images { get; set; } = null!;
+
+    public DbSet<Category>? Categories { get; set; } = null!;
+    public DbSet<Brand>? Brands { get; set; } = null!;
+    public DbSet<Specification> Specifications { get; set; } = null!;
+    public DbSet<Basket> Baskets { get; set; }
+    public DbSet<Order> Orders { get; set; }
+
 }

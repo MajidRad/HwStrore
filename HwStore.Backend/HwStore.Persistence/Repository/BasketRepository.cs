@@ -2,42 +2,35 @@
 using HwStore.Application.Contract.Persistence;
 using HwStore.Application.DTOs.Basket;
 using HwStore.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HwStore.Persistence.Repository
+namespace HwStore.Persistence.Repository;
+
+public class BasketRepository : GenericRepository<Basket>, IBasketRepository
 {
-    public class BasketRepository : GenericRepository<Basket>, IBasketRepository
+    private readonly HwStoreDbContext _db;
+    private readonly IMapper _mapper;
+    public BasketRepository(HwStoreDbContext db, IMapper mapper) : base(db, mapper)
     {
-        private readonly HwStoreDbContext _db;
-        private readonly IMapper _mapper;
-        public BasketRepository(HwStoreDbContext db, IMapper mapper) : base(db, mapper)
-        {
-            _db = db;
-            _mapper = mapper;
-        }
-        public async Task<Basket> GetBasket(string? buyerId)
-        {
-           
-            var basket = await _db.Baskets
-                .Include(p => p.BasketItems)
-                .ThenInclude(p => p.Product)
-                .ThenInclude(x => x.Images)
-                .FirstOrDefaultAsync(x => x.BuyerId == buyerId);
-            return basket;
-        }
+        _db = db;
+        _mapper = mapper;
+    }
+    public async Task<Basket> GetBasket(string? buyerId)
+    {
 
-        public async Task UpdateBasket(BasketDto_Base basket)
-        {
-            var basketFromDb = _db.Baskets.FirstOrDefault(x => x.Id == basket.Id);
-            basketFromDb.BuyerId = basket.BuyerId;
-            _db.Baskets.Update(basketFromDb);
-            await _db.SaveChangesAsync();
-        }
+        var basket = await _db.Baskets
+            .Include(p => p.BasketItems)
+            .ThenInclude(p => p.Product)
+            .ThenInclude(x => x.Images)
+            .FirstOrDefaultAsync(x => x.BuyerId == buyerId);
+        return basket;
+    }
+
+    public async Task UpdateBasket(BasketDto_Base basket)
+    {
+        var basketFromDb = _db.Baskets.FirstOrDefault(x => x.Id == basket.Id);
+        basketFromDb.BuyerId = basket.BuyerId;
+        _db.Baskets.Update(basketFromDb);
+        await _db.SaveChangesAsync();
     }
 }
