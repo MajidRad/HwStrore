@@ -2,14 +2,20 @@
 
 #### Backend technology and pattern
 
-*.Net Core6
-*Mediator
-*CQRS
-*Repository
-\*UnitOfWork
+<ul>
+  <li>.Net Core6</li>
+  <li>Mediator</li>
+  <li>CQRS</li>
+  <li>Repository</li>
+  <li>UnitOfWork</li>
+</ul>
 
-*React
-*Redux-toolkit
-*TypeScript
-*Axios
-\*ReactHookForm
+#### Frontend technology
+
+<ul>
+  <li>React</li>
+  <li>Redux-toolkit</li>
+  <li>TypeScript</li>
+  <li>Axios</li>
+  <li>ReactHookForm</li>
+</ul>
