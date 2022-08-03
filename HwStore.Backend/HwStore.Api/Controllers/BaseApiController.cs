@@ -1,56 +1,58 @@
 ﻿using HwStore.Api.Extensions;
 using HwStore.Application.Core;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HwStore.Api.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class BaseApiController : ControllerBase
+namespace HwStore.Api.Controllers
 {
-    private IMediator _mediator;
-    protected IMediator Mediator => _mediator ??=
-        HttpContext.RequestServices.GetService<IMediator>();
-
-    public BaseApiController(IMediator mediator)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BaseApiController : ControllerBase
     {
-        _mediator = mediator;
-    }
+        private IMediator _mediator;
+        protected IMediator Mediator => _mediator ??= 
+            HttpContext.RequestServices.GetService<IMediator>() ;
 
-    protected ActionResult HandleResult<T>(Result<T> result)
-    {
-        if (result == null) return NotFound();
-        if (result.IsSuccess && result.Value == null) return NotFound();
-        if (result.IsSuccess && result.Value != null) return Ok(result.Value);
-        if (result.IsSuccess == false && result.Error != null) return BadRequest(result.Error);
-        if (result.IsSuccess == false && result.Errors != null)
+        public BaseApiController(IMediator mediator)
         {
-            return BadRequest(result.Errors);
+            _mediator = mediator;
         }
-        return BadRequest(result.Error);
-    }
 
-    protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
-    {
-        if (result == null) return NotFound();
-        if (result.IsSuccess && result.Value == null) return NotFound();
-        if (result.IsSuccess && result.Value != null)
+        protected ActionResult HandleResult<T>(Result<T> result)
         {
-            Response.AddPaginationHeader
-                (
-                    result.Value.MetaData.CurrentPage,
-                    result.Value.MetaData.TotalPages,
-                    result.Value.MetaData.PageSize,
-                    result.Value.MetaData.TotalCount
-                );
-            return Ok(result.Value);
-        }
-        if (result.IsSuccess == false && result.Error != null)
+            if (result == null) return NotFound();
+            if (result.IsSuccess && result.Value == null) return NotFound();
+            if (result.IsSuccess && result.Value != null) return Ok(result.Value);
+            if (result.IsSuccess == false && result.Error != null) return BadRequest(result.Error);
+            if (result.IsSuccess == false && result.Errors != null)
+            {
+                return BadRequest(result.Errors);
+            }
             return BadRequest(result.Error);
+        }
+        
+        protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
+        {
+            if (result == null) return NotFound();
+            if (result.IsSuccess && result.Value == null) return NotFound();
+            if(result.IsSuccess&& result.Value != null)
+            {
+                Response.AddPaginationHeader
+                    (
+                        result.Value.MetaData.CurrentPage,
+                        result.Value.MetaData.TotalPages,
+                        result.Value.MetaData.PageSize,
+                        result.Value.MetaData.TotalCount
+                    );
+                return Ok(result.Value);
+            }
+            if (result.IsSuccess == false && result.Error != null)
+                return BadRequest(result.Error);
 
-        if (result.IsSuccess == false && result.Errors != null)
-            return BadRequest(result.Errors);
-        return BadRequest(result.Error);
+            if (result.IsSuccess == false && result.Errors != null)
+                return BadRequest(result.Errors);
+            return BadRequest(result.Error);
+        }
     }
 }

@@ -1,8 +1,15 @@
-﻿namespace HwStore.Application.DTOs.Specification;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class SpecificationDto_Upsert
+namespace HwStore.Application.DTOs.Specification
 {
-    public string? SpecLabel { get; set; }
-    public string? SpecValue { get; set; }
+    public class SpecificationDto_Upsert
+    {
+        public string? SpecLabel { get; set; }
+        public string? SpecValue { get; set; }
 
+    }
 }

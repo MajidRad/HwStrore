@@ -1,11 +1,18 @@
-﻿namespace HwStore.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Specification
+namespace HwStore.Domain
 {
-    public int Id { get; set; }
-    public string? SpecLabel { get; set; }
-    public string? SpecValue { get; set; }
+    public class Specification
+    {
+        public int Id { get; set; }
+        public string? SpecLabel { get; set; }
+        public string? SpecValue { get; set; }
 
-    public Product? Product { get; set; }
-    public int ProductId { get; set; }
+        public Product? Product { get; set; }
+        public int ProductId { get; set; }
+    }
 }

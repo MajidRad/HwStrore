@@ -1,6 +1,14 @@
-﻿namespace HwStore.Application.Contract.Persistence;
+﻿using HwStore.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface IBrandRepository : IGenricRepository<Brand>
+namespace HwStore.Application.Contract.Persistence
 {
-    Task Update(Brand brand);
+    public interface IBrandRepository:IGenricRepository<Brand>
+    {
+        Task Update(Brand brand);
+    }
 }

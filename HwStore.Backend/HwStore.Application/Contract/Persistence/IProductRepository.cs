@@ -1,8 +1,14 @@
-﻿namespace HwStore.Application.Contract.Persistence;
+﻿using HwStore.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface IProductRepository : IGenricRepository<Product>
+namespace HwStore.Application.Contract.Persistence
 {
-    Task<PagedList<Product>> GetProducts(PaginationParams param);
-    Task<Product> GetProductWithDetails(int id);
-    Task Update(Product Product);
+    public interface IProductRepository:IGenricRepository<Product>
+    {
+        Task<Product> GetProductWithDetails(int id);
+    }
 }

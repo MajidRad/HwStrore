@@ -1,27 +1,28 @@
 ﻿using System.Text.Json;
 
-namespace HwStore.Api.Extensions;
-
-public static class HttpExtensions
+namespace HwStore.Api.Extensions
 {
-    public static void AddPaginationHeader(this HttpResponse response,
-        int currentPage,
-        int totalPages,
-        int itemsPerPage,
-        int totalItems
-        )
+    public static class HttpExtensions
     {
-        var paginationHeader = new
+        public static void AddPaginationHeader(this HttpResponse response,
+            int currentPage,
+            int totalPages,
+            int itemsPerPage,
+            int totalItems
+            )
         {
-            currentPage,
-            itemsPerPage,
-            totalItems,
-            totalPages
-        };
-        var options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
+            var paginationHeader = new
+            {
+                currentPage,
+                itemsPerPage,
+                totalItems,
+                totalPages
+            };
+            var options = new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
 
-        response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader, options));
-        response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
+            response.Headers.Add("Pagination", JsonSerializer.Serialize(paginationHeader,options));
+            response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
+        }
+        
     }
-
 }

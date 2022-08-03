@@ -1,9 +1,16 @@
-﻿namespace HwStore.Application.Models.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class JwtSettings
+namespace HwStore.Application.Models.Identity
 {
-    public string? Key { get; set; }
-    public string? Issuer { get; set; }
-    public string? Audience { get; set; }
-    public double DurationInMinutes { get; set; }
+	public class JwtSettings
+	{
+		public string? Key { get; set; }
+        public string? Issuer { get; set; }
+        public string? Audience { get; set; }
+        public double DurationInMinutes { get; set; }
+	}
 }

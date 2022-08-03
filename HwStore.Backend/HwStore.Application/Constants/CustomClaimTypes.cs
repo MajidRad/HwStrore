@@ -1,6 +1,13 @@
-﻿namespace HwStore.Application.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class CustomClaimTypes
+namespace HwStore.Application.Constants
 {
-    public const string Uid = "uid";
+    public class CustomClaimTypes
+    {
+        public const string Uid = "uid";
+    }
 }

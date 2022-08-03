@@ -1,6 +1,14 @@
-﻿namespace HwStore.Application.DTOs.Category;
+﻿using HwStore.Application.DTOs.Product;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class CategoryDto_Details : CategoryDto_Base
+namespace HwStore.Application.DTOs.Category
 {
-    public IEnumerable<ProductDto_Base>? Products { get; set; }
+    public class CategoryDto_Details:CategoryDto_Base
+    {
+        public IEnumerable<ProductDto_Base>? Products { get; set; }
+    }
 }

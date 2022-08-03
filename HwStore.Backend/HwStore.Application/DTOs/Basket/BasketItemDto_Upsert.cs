@@ -1,8 +1,15 @@
-﻿namespace HwStore.Application.DTOs.Basket;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class BasketItemDto_Upsert
+namespace HwStore.Application.DTOs.Basket
 {
-    public int Quantity { get; set; }
+    public class BasketItemDto_Upsert
+    {
+        public int Quantity { get; set; }
 
-    public ProductDto_Base? Product { get; set; }
+        public ProductDto_Base? Product { get; set; }
+    }
 }

@@ -2,83 +2,98 @@
 using AutoMapper.QueryableExtensions;
 using HwStore.Application.Contract.Persistence;
 using HwStore.Application.Core;
+using HwStore.Application.DTOs.Product;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HwStore.Persistence.Repository;
-
-public class GenericRepository<T> : IGenricRepository<T> where T : class
+namespace HwStore.Persistence.Repository
 {
-    private readonly IMapper _mapper;
-    private readonly HwStoreDbContext _db;
-    internal DbSet<T> dbSet;
-    public GenericRepository(HwStoreDbContext db, IMapper mapper)
+    public class GenericRepository<T> : IGenricRepository<T> where T : class
     {
-        _mapper = mapper;
-        _db = db;
-        dbSet = _db.Set<T>();
-
-    }
-    public async Task<T> Add(T entity)
-    {
-        await dbSet.AddAsync(entity);
-        return entity;
-    }
-
-
-
-    public async Task<bool> Exist(Expression<Func<T, bool>> expression)
-    {
-        var res = await dbSet.Where(expression).FirstOrDefaultAsync();
-        if (res == null) return false;
-        return true;
-    }
-
-    public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
-        params Expression<Func<T, object>>[] includes)
-    {
-        IQueryable<T> query = dbSet;
-        query = query.Where(filter);
-        if (includes != null)
+        private readonly IMapper _mapper;
+        private readonly HwStoreDbContext _db;
+        internal DbSet<T> dbSet;
+        public GenericRepository(HwStoreDbContext db, IMapper mapper)
         {
-            query = includes.Aggregate(query, (current, include) => current.Include(include));
+            _mapper = mapper;
+            _db = db;
+            dbSet = _db.Set<T>();
+
         }
-#pragma warning disable CS8603 // Possible null reference return.
-        return await query.FirstOrDefaultAsync();
-    }
-
-
-    public async Task<IEnumerable<T>> GetListAsync(string? includeProp)
-    {
-        IQueryable<T> query = dbSet;
-        if (includeProp != null)
+        public async Task<T> Add(T entity)
         {
-            foreach (var item in includeProp
-                .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            await dbSet.AddAsync(entity);
+            return entity;
+        }
+
+
+
+        public async Task<bool> Exist(Expression<Func<T, bool>> expression)
+        {
+            var res = await dbSet.Where(expression).FirstOrDefaultAsync();
+            if (res == null) return false;
+            return true;
+        }
+
+        public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter,
+            params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+            if (includes != null)
             {
-                dbSet.Include(item);
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
             }
+            #pragma warning disable CS8603 // Possible null reference return.
+            return await query.FirstOrDefaultAsync();
         }
-        return await query.ToListAsync();
-    }
 
-    public async Task<PagedList<TResult>> GetPagedListAsync<TResult>(PaginationParams param)
-    {
-        var query = dbSet
-            .ProjectTo<TResult>(_mapper.ConfigurationProvider)
-            .AsQueryable();
 
-        var results = await PagedList<TResult>.ToPageList(query, param.PageNumber, param.PageSize);
-        return results;
-    }
+        public async Task<IEnumerable<T>> GetListAsync(string? includeProp)
+        {
+            IQueryable<T> query = dbSet;
+            if (includeProp != null)
+            {
+                foreach (var item in includeProp
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    dbSet.Include(item);
+                }
+            }
+            return await query.ToListAsync();
+        }
 
-    public void Remove(T entity)
-    {
-        dbSet.Remove(entity);
-    }
+        public async Task<PagedList<TResult>> GetPagedListAsync<TResult>(PaginationParams param, string includes)
+        {
 
-    public void RemoveRange(T entities)
-    {
-        dbSet.RemoveRange(entities);
+            if (includes != null)
+            {
+                foreach (var item in includes.Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    dbSet.Include(item);
+                }
+            }
+                var query=dbSet
+                .ProjectTo<TResult>(_mapper.ConfigurationProvider)
+                .AsQueryable();
+          
+            var results = await PagedList<TResult>.ToPageList(query, param.PageNumber, param.PageSize);
+            return results;
+        }
+
+        public void Remove(T entity) 
+        {
+            dbSet.Remove(entity);
+        }
+
+        public void RemoveRange(T entities)
+        {
+            dbSet.RemoveRange(entities);
+        }
     }
 }

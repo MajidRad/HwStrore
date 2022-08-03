@@ -1,29 +1,36 @@
-﻿namespace HwStore.Application.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Result<T>
+namespace HwStore.Application.Core
 {
-    #region Attribute
-    public bool IsSuccess { get; set; }
+    public class Result<T>
+    {
+        #region Attribute
+        public bool IsSuccess { get; set; }
 
-    public T Value { get; set; }
+        public T Value { get; set; }
 
-    public List<string>? Errors { get; set; }
+        public List<string>? Errors { get; set; }
 
-    public string? Error { get; set; }
+        public string? Error { get; set; }
 
+   
+        #endregion
 
-    #endregion
+        #region override method
+        public static Result<T> Success(T value) =>
+            new Result<T> { IsSuccess = true, Value = value };
 
-    #region override method
-    public static Result<T> Success(T value) =>
-        new Result<T> { IsSuccess = true, Value = value };
+        public static Result<T> Failure(List<string> errors) =>
+            new Result<T> { IsSuccess = false, Errors = errors };
 
-    public static Result<T> Failure(List<string> errors) =>
-        new Result<T> { IsSuccess = false, Errors = errors };
+        public static Result<T> Failure(string error) =>
+            new Result<T> { IsSuccess = false, Error = error };
 
-    public static Result<T> Failure(string error) =>
-        new Result<T> { IsSuccess = false, Error = error };
-
-    //public static Result<T> Failure(string error,int code)=>new Result<T> { IsSuccess=false,Error=error,Code=code};
-    #endregion
+        //public static Result<T> Failure(string error,int code)=>new Result<T> { IsSuccess=false,Error=error,Code=code};
+        #endregion
+    }
 }

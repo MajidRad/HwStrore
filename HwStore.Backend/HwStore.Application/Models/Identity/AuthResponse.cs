@@ -1,12 +1,18 @@
 ﻿using HwStore.Application.DTOs.Basket;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HwStore.Application.Models.Identity;
-
-public class AuthResponse
+namespace HwStore.Application.Models.Identity
 {
-    public int Id { get; set; }
-    public string? Email { get; set; }
-    public string? UserName { get; set; }
-    public string? Token { get; set; }
-    public BasketDto_Base? Basket { get; set; }
+public class AuthResponse
+	{
+		public int Id { get; set; }
+		public string? Email { get; set; }
+		public string? UserName { get; set; }
+		public string? Token { get; set; }
+		public BasketDto_Base? Basket { get; set; }
+	}
 }

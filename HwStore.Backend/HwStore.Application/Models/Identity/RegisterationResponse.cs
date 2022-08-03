@@ -1,6 +1,13 @@
-﻿namespace HwStore.Application.Models.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class RegisterationResponse
+namespace HwStore.Application.Models.Identity
 {
-    public int userId { get; set; }
+	public class RegisterationResponse
+	{
+		public int userId { get; set; }
+	}
 }

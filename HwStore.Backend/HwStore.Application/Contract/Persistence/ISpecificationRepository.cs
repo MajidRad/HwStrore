@@ -1,7 +1,15 @@
-﻿namespace HwStore.Application.Contract.Persistence;
+﻿using HwStore.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface ISpecificationRepository : IGenricRepository<Specification>
+namespace HwStore.Application.Contract.Persistence
 {
-    Task Update(Specification specification);
-    Task<ICollection<Specification>> GetSpecById(int prodId);
+    public interface ISpecificationRepository:IGenricRepository<Specification>
+    {
+        Task Update(Specification specification);
+        Task<ICollection<Specification>> GetSpecById(int prodId);
+    }
 }

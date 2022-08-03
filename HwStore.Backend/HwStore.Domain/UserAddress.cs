@@ -1,6 +1,13 @@
-﻿namespace HwStore.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class UserAddress : Address
+namespace HwStore.Domain
 {
-    public int Id { get; set; }
+    public class UserAddress:Address
+    {
+        public int Id { get; set; }
+    }
 }

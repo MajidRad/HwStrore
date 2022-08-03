@@ -1,8 +1,15 @@
-﻿namespace HwStore.Application.DTOs.Image;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class ImageDto_Upsert
+namespace HwStore.Application.DTOs.Image
 {
-    public string? Name { get; set; }
-    public string? Path { get; set; }
+    public class ImageDto_Upsert
+    {
+        public string? Name { get; set; }
+        public string? Path { get; set; }
 
+    }
 }

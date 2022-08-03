@@ -1,6 +1,14 @@
-﻿namespace HwStore.Application.Contract.Persistence;
+﻿using HwStore.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface ICategoryRepository : IGenricRepository<Category>
+namespace HwStore.Application.Contract.Persistence
 {
-    Task Update(Category category);
+    public interface ICategoryRepository:IGenricRepository<Category>
+    {
+        Task Update(Category category);
+    }
 }

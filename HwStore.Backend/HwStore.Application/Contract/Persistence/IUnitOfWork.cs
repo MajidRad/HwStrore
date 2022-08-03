@@ -1,12 +1,20 @@
-﻿namespace HwStore.Application.Contract.Persistence;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public interface IUnitOfWork
+namespace HwStore.Application.Contract.Persistence
 {
-    IProductRepository ProductRepository { get; }
-    ICategoryRepository CategoryRepository { get; }
-    IBrandRepository BrandRepository { get; }
-    ISpecificationRepository SpecificationRepository { get; }
-    IBasketRepository BasketRepository { get; }
-    Task SaveAsync();
-    void Save();
+    public interface IUnitOfWork
+    {
+        IProductRepository ProductRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
+        IBrandRepository BrandRepository { get; }
+        ISpecificationRepository SpecificationRepository { get; }
+        IBasketRepository BasketRepository { get; }
+        IOrderRepository OrderRepository { get; }
+        Task SaveAsync();
+        void Save();
+    }
 }

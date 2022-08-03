@@ -1,9 +1,15 @@
 ﻿using HwStore.Application.DTOs.Basket;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HwStore.Application.Features.Baskets.Requsts.Commands;
-
-public class AddToBasketItemRequest : IRequest<Result<BasketDto_Base>>
+namespace HwStore.Application.Features.Baskets.Requsts.Commands
 {
-    public BasketDto_Param AddToBasket { get; set; }
+    public class AddToBasketItemRequest : IRequest<Result<BasketDto_Base>>
+    {
+      public BasketDto_Param AddToBasket { get; set; }
+    }
 }

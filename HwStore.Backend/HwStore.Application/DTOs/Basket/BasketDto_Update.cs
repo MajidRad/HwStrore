@@ -1,7 +1,14 @@
-﻿namespace HwStore.Application.DTOs.Basket;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class BasketDto_Update
+namespace HwStore.Application.DTOs.Basket
 {
-    public string? BuyerId { get; set; } = null!;
-    public List<BasketItemDto>? BasketItems { get; set; } = new List<BasketItemDto>();
+    public class BasketDto_Update
+    {
+        public string? BuyerId { get; set; } = null!;
+        public List<BasketItemDto>? BasketItems { get; set; } = new List<BasketItemDto>();
+    }
 }

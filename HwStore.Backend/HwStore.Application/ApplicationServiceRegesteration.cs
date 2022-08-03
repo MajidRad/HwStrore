@@ -1,17 +1,24 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HwStore.Application;
-
-public static class ApplicationServiceRegesteration
+namespace HwStore.Application
 {
-    public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
+    public static class ApplicationServiceRegesteration
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddMediatR(Assembly.GetExecutingAssembly());
-        services.AddScoped<BasketAccessor>();
+        public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
+        {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddScoped<BasketAccessor>(); 
 
-        return services;
+            return services;
+        }
     }
 }

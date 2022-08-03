@@ -1,22 +1,28 @@
 ﻿using AutoMapper;
 using HwStore.Application.Contract.Persistence;
 using HwStore.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HwStore.Persistence.Repository;
-
-public class BrandRepository : GenericRepository<Brand>, IBrandRepository
+namespace HwStore.Persistence.Repository
 {
-    private readonly HwStoreDbContext _db;
-    private readonly IMapper _mapper;
-
-    public BrandRepository(HwStoreDbContext db, IMapper mapper) : base(db, mapper)
+    public class BrandRepository : GenericRepository<Brand>, IBrandRepository
     {
-        _db = db;
-        _mapper = mapper;
-    }
+        private readonly HwStoreDbContext _db;
+        private readonly IMapper _mapper;
 
-    public Task Update(Brand brand)
-    {
-        throw new NotImplementedException();
+        public BrandRepository(HwStoreDbContext db,IMapper mapper) : base(db,mapper)
+        {
+            _db = db;
+            _mapper = mapper;
+        }
+
+        public Task Update(Brand brand)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

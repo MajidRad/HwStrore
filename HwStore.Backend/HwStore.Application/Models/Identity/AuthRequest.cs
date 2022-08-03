@@ -1,7 +1,14 @@
-﻿namespace HwStore.Application.Models.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class AuthRequest
+namespace HwStore.Application.Models.Identity
 {
-    public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
+	public class AuthRequest
+	{
+		public string Email { get; set; } = null!;
+		public string Password { get; set; } = null!;
+	}
 }

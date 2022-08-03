@@ -1,10 +1,17 @@
-﻿namespace HwStore.Domain.Order;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class OrderItem
+namespace HwStore.Domain.Order
 {
-    public int Id { get; set; }
-    public ProductItemOrdered? ItemOrdered { get; set; }
-    public decimal Price { get; set; }
-    public int Quantity { get; set; }
-
+    public class OrderItem
+    {
+        public int Id { get; set; }
+        public ProductItemOrdered? ItemOrdered {get;set;}
+        public decimal Price { get; set; }
+        public int Quantity { get; set; }
+        
+    }
 }

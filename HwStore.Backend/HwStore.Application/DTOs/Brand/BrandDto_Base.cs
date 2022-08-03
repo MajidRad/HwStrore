@@ -1,6 +1,14 @@
-﻿namespace HwStore.Application.DTOs.Brand;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class BrandDto_Base : BaseDto
+namespace HwStore.Application.DTOs.Brand
 {
-    public string? Name { get; set; }
+
+    public class BrandDto_Base:BaseDto
+    {
+        public string? Name { get; set; }
+    }
 }

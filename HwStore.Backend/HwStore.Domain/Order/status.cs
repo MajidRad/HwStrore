@@ -1,8 +1,15 @@
-﻿namespace HwStore.Domain.Order;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public enum OrderStatus
+namespace HwStore.Domain.Order
 {
-    Pending,
-    PaymentRecived,
-    PaymentFailed
+    public enum OrderStatus
+    {
+        Pending,
+        PaymentRecived,
+        PaymentFailed
+    }
 }

@@ -2,17 +2,18 @@
 
 #nullable disable
 
-namespace HwStore.Persistence.Migrations;
-
-public partial class freshProduct : Migration
+namespace HwStore.Persistence.Migrations
 {
-    protected override void Up(MigrationBuilder migrationBuilder)
+    public partial class freshProduct : Migration
     {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
 
-    }
+        }
 
-    protected override void Down(MigrationBuilder migrationBuilder)
-    {
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
 
+        }
     }
 }

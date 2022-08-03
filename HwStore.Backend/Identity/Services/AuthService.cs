@@ -1,85 +1,111 @@
 ﻿using HwStore.Application.Contract.Identity;
+using HwStore.Application.DTOs.Order;
 using HwStore.Application.Models.Identity;
 using HwStore.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Identity.Services;
-
-public class AuthService : IAuthService
+namespace Identity.Services
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly TokenServices _tokenServices;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    public AuthService(UserManager<ApplicationUser> userManager
-        , SignInManager<ApplicationUser> signInManager, TokenServices tokenServices, IHttpContextAccessor httpContextAccessor)
+    public class AuthService : IAuthService
     {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _tokenServices = tokenServices;
-        _httpContextAccessor = httpContextAccessor;
-    }
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly TokenServices _tokenServices;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly HwStoreIdentityDbContext _dbContext;
 
-    public async Task<ApplicationUser> GetCurrentUser()
-    {
-        var email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
-        return await _userManager.FindByEmailAsync(email.ToString());
-    }
+        public AuthService(UserManager<ApplicationUser> userManager
+            , SignInManager<ApplicationUser> signInManager, TokenServices tokenServices, IHttpContextAccessor httpContextAccessor, HwStoreIdentityDbContext dbContext)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _tokenServices = tokenServices;
+            _httpContextAccessor = httpContextAccessor;
+            _dbContext = dbContext;
+        }
 
-    public async Task<AuthResponse> Login(AuthRequest request)
-    {
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null)
+        public async Task<ApplicationUser> GetCurrentUser()
         {
-            throw new Exception($"User whith this Email {request.Email} is not Found");
+            var email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+            return await _userManager.FindByEmailAsync(email.ToString());
         }
-        var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-        if (!result.Succeeded)
+
+        public async Task<AuthResponse> Login(AuthRequest request)
         {
-            throw new Exception($"Credintial is not valid for this{request.Email}");
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user == null)
+            {
+                throw new Exception($"User whith this Email {request.Email} is not Found");
+            }
+            var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+            if (!result.Succeeded)
+            {
+                throw new Exception($"Credintial is not valid for this{request.Email}");
+            }
+            var token = await _tokenServices.CreateToken(user);
+            var response = new AuthResponse
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email,
+                Token = token,
+            };
+            return response;
         }
-        var token = await _tokenServices.CreateToken(user);
-        var response = new AuthResponse
+        public async Task<ApplicationUser> GetUser(AuthRequest request)
         {
-            Id = user.Id,
-            UserName = user.UserName,
-            Email = user.Email,
-            Token = token,
-        };
-        return response;
-    }
-    public async Task<ApplicationUser> GetUser(AuthRequest request)
-    {
-        var user = await _userManager.FindByEmailAsync(request.Email);
-        var checkPass = await _userManager.CheckPasswordAsync(user, request.Password);
-        if (checkPass) return user;
-        return null;
-    }
-    public async Task<RegisterationResponse> Register(RegistarationRequest request)
-    {
-        var existedUser = await _userManager.FindByEmailAsync(request.Email);
-        if (existedUser != null)
-        {
-            throw new Exception($"User Already exist");
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            var checkPass = await _userManager.CheckPasswordAsync(user, request.Password);
+            if (checkPass) return user;
+            return null;
         }
-        var user = new ApplicationUser()
+        public async Task<RegisterationResponse> Register(RegistarationRequest request)
         {
-            Email = request.Email,
-            //Address = request.Address,
-            UserName = request.UserName,
-            EmailConfirmed = true,
-        };
-        var result = await _userManager.CreateAsync(user, request.Password);
-        if (!result.Succeeded)
-        {
-            throw new Exception($"{result.Errors}");
+            var existedUser = await _userManager.FindByEmailAsync(request.Email);
+            if (existedUser != null)
+            {
+                throw new Exception($"User Already exist");
+            }
+            var user = new ApplicationUser()
+            {
+                Email = request.Email,
+                //Address = request.Address,
+                UserName = request.UserName,
+                EmailConfirmed = true,
+            };
+            var result = await _userManager.CreateAsync(user, request.Password);
+            if (!result.Succeeded)
+            {
+                throw new Exception($"{result.Errors}");
+            }
+            await _userManager.AddToRoleAsync(user, "User");
+            return new RegisterationResponse()
+            {
+                userId = user.Id
+            };
         }
-        await _userManager.AddToRoleAsync(user, "User");
-        return new RegisterationResponse()
+        public async Task UpdateUserAddress(OrderDto_Create orderDto)
         {
-            userId = user.Id
-        };
+            var username = _httpContextAccessor.HttpContext.User.Identity.Name;
+            var user = await _userManager.FindByEmailAsync(username);
+
+            var address = new UserAddress()
+            {
+                Address1 = orderDto.ShippingAddress.Address1,
+                City = orderDto.ShippingAddress.City,
+                FullName = orderDto.ShippingAddress.FullName,
+                PostalCode = orderDto.ShippingAddress.PostalCode,
+            };
+            user.Address = address;
+            await _dbContext.SaveChangesAsync();
+
+        }
     }
 }

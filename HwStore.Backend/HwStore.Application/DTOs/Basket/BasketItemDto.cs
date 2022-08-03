@@ -1,14 +1,21 @@
-﻿namespace HwStore.Application.DTOs.Basket;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class BasketItemDto
+namespace HwStore.Application.DTOs.Basket
 {
-    public int ProductId { get; set; }
+    public class BasketItemDto
+    {
+        public int ProductId { get; set; }
+        
+        public string? Name { get; set; }
 
-    public string? Name { get; set; }
+        public decimal Price { get; set; }
+        public string? ImageUrl { get; set; }
+        public int Quantity { get; set; }
+        public int QuantityInBasket { get; set; }
 
-    public decimal Price { get; set; }
-    public string? ImageUrl { get; set; }
-    public int Quantity { get; set; }
-    public int QuantityInBasket { get; set; }
-
+    }
 }

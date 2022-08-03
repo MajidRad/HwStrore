@@ -1,13 +1,20 @@
-﻿namespace HwStore.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class Basket
+namespace HwStore.Domain
 {
-    public Basket()
+    public class Basket
     {
-        new List<BasketItem>();
-    }
-    public int Id { get; set; }
-    public string? BuyerId { get; set; } = null!;
-    public List<BasketItem>? BasketItems { get; set; }
+        public Basket()
+        {
+            new List<BasketItem>(); 
+        }
+        public int Id { get; set; }
+        public string? BuyerId { get; set; } = null!;
+        public List<BasketItem>? BasketItems { get; set; } 
 
+    }
 }

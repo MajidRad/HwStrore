@@ -1,7 +1,15 @@
-﻿namespace HwStore.Application.DTOs.Image;
+﻿using HwStore.Application.DTOs.Product;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class ImageDto_Details : ImageDto_Base
+namespace HwStore.Application.DTOs.Image
 {
-    public int ProductId { get; set; }
-    public ProductDto_Base? Product { get; set; }
+    public class ImageDto_Details : ImageDto_Base
+    {
+        public int ProductId { get; set; }
+        public ProductDto_Base? Product { get; set; }
+    }
 }

@@ -2,23 +2,29 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Identity.Configuration;
-
-public class UserRoleConfiguration : IEntityTypeConfiguration<ApplicationUserRole>
+namespace Identity.Configuration
 {
-    public void Configure(EntityTypeBuilder<ApplicationUserRole> builder)
+    public class UserRoleConfiguration : IEntityTypeConfiguration<ApplicationUserRole>
     {
-        builder.HasData(
-        new IdentityUserRole<int>
+        public void Configure(EntityTypeBuilder<ApplicationUserRole> builder)
         {
-            RoleId = 1,
-            UserId = 2,
-        },
-        new IdentityUserRole<int>
-        {
-            RoleId = 2,
-            UserId = 1
-        });
+            builder.HasData(
+            new IdentityUserRole<int>
+            {
+                RoleId =1,
+                UserId = 2,
+            },
+            new IdentityUserRole<int>
+            {
+                RoleId = 2,
+                UserId = 1
+            });
+        }
     }
 }

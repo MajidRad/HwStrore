@@ -1,9 +1,16 @@
-﻿namespace HwStore.Application.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class MetaData
+namespace HwStore.Application.Core
 {
-    public int CurrentPage { get; set; }
-    public int TotalPages { get; set; }
-    public int PageSize { get; set; }
-    public int TotalCount { get; set; }
+    public class MetaData
+    {
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+    }
 }
