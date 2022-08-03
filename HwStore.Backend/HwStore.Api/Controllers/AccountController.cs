@@ -43,18 +43,12 @@ namespace HwStore.Api.Controllers
                 {
                     await Mediator.Send(new RemoveBasketRequest() { BuyerId = userBasket.Value.BuyerId });
                 }
-                await Mediator.Send(new TransferBasketToUserRequest() { Basket = anonBasket.Value, buyerId = user.Email });
+                await Mediator.Send(new TransferBasketToUserRequest() { Basket = anonBasket.Value, buyerId = user.Value.Email });
                 Response.Cookies.Delete("buyerId");
             }
-            var authResult = await _authService.Login(request);
-            var result = new AuthResponse()
-            {
-                Id = authResult.Id,
-                Email = authResult.Email,
-                Token = authResult.Token,
-                Basket = anonBasket != null ? anonBasket.Value : userBasket.Value
-            };
-            return Ok(result);
+            var basket = anonBasket != null ? anonBasket.Value : userBasket.Value;
+            var authResult = await _authService.Login(request,basket);
+            return HandleResult<AuthResponse>(authResult);
         }
         [HttpPost("Register")]
         public async Task<ActionResult<RegisterationResponse>> Register(RegistarationRequest request)
@@ -70,7 +64,7 @@ namespace HwStore.Api.Controllers
             var userBasket = await Mediator.Send(new GetBasketRequest() { buyerId = userName });
             var user = await _authService.GetCurrentUser();
             var mappedUser = new UserDto
-            { Email = user.Email, Token = await _tokenServices.CreateToken(user), Basket = userBasket.Value };
+            { Email = user.Value.Email, Token = await _tokenServices.CreateToken(user.Value), Basket = userBasket.Value };
 
             return Ok(mappedUser);
         }

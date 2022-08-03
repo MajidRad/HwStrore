@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
 namespace HwStore.Application.Core
 {
     public class Result<T>
@@ -17,6 +18,8 @@ namespace HwStore.Application.Core
 
         public string? Error { get; set; }
 
+        public HttpStatusCode Code { get; set; }
+   
    
         #endregion
 
@@ -30,7 +33,7 @@ namespace HwStore.Application.Core
         public static Result<T> Failure(string error) =>
             new Result<T> { IsSuccess = false, Error = error };
 
-        //public static Result<T> Failure(string error,int code)=>new Result<T> { IsSuccess=false,Error=error,Code=code};
+        public static Result<T> Failure(string error,HttpStatusCode code)=>new Result<T> { IsSuccess =false,Error=error,Code=code};
         #endregion
     }
 }

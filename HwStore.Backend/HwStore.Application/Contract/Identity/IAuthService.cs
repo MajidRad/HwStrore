@@ -1,4 +1,5 @@
-﻿using HwStore.Application.DTOs.Order;
+﻿using HwStore.Application.DTOs.Basket;
+using HwStore.Application.DTOs.Order;
 using HwStore.Application.Models.Identity;
 using HwStore.Domain;
 using System;
@@ -11,10 +12,10 @@ namespace HwStore.Application.Contract.Identity
 {
 	public interface IAuthService
 	{
-		public Task<AuthResponse> Login(AuthRequest request);
+		public Task<Result<AuthResponse>> Login(AuthRequest request,BasketDto_Base?Basket);
 		public Task<RegisterationResponse> Register(RegistarationRequest request);
-		public Task<ApplicationUser> GetCurrentUser();
-		public Task<ApplicationUser> GetUser(AuthRequest request);
+		public Task<Result<ApplicationUser>> GetCurrentUser();
+		public Task<Result<ApplicationUser>> GetUser(AuthRequest request);
 		public Task UpdateUserAddress(OrderDto_Create orderDto);
 	}
 }

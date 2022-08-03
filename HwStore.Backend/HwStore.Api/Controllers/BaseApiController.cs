@@ -3,6 +3,7 @@ using HwStore.Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace HwStore.Api.Controllers
 {
@@ -24,6 +25,10 @@ namespace HwStore.Api.Controllers
             if (result == null) return NotFound();
             if (result.IsSuccess && result.Value == null) return NotFound();
             if (result.IsSuccess && result.Value != null) return Ok(result.Value);
+            if (result.IsSuccess == false && result.Code==HttpStatusCode.Unauthorized)
+            {
+                return Unauthorized(result.Error);
+            }
             if (result.IsSuccess == false && result.Error != null) return BadRequest(result.Error);
             if (result.IsSuccess == false && result.Errors != null)
             {

@@ -47,7 +47,7 @@ namespace HwStore.Api.Controllers
             var result = await Mediator.Send(new UpdateBasketRequest { Params = basketDto_param ,buyerId=buyerId});
             return HandleResult(result);
         }
-        [Authorize]
+    
         [HttpDelete("RemoveItem")]
         public async Task<ActionResult<BasketDto_Base>> RemoveBasketItem(int productId)
         {

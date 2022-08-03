@@ -1,4 +1,6 @@
 ﻿using HwStore.Application.Contract.Identity;
+using HwStore.Application.Core;
+using HwStore.Application.DTOs.Basket;
 using HwStore.Application.DTOs.Order;
 using HwStore.Application.Models.Identity;
 using HwStore.Domain;
@@ -7,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,23 +34,25 @@ namespace Identity.Services
             _dbContext = dbContext;
         }
 
-        public async Task<ApplicationUser> GetCurrentUser()
+        public async Task<Result<ApplicationUser>> GetCurrentUser()
         {
             var email = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
-            return await _userManager.FindByEmailAsync(email.ToString());
+            var user= await _userManager.FindByEmailAsync(email.ToString());
+            if (user == null) return Result<ApplicationUser>.Failure("Credential is Not Valid", HttpStatusCode.Unauthorized);
+            return Result<ApplicationUser>.Success(user);
         }
 
-        public async Task<AuthResponse> Login(AuthRequest request)
+        public async Task<Result<AuthResponse>> Login(AuthRequest request, BasketDto_Base? Basket)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
             {
-                throw new Exception($"User whith this Email {request.Email} is not Found");
+                return Result<AuthResponse>.Failure("Credentials Not valid", HttpStatusCode.Unauthorized);
             }
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             if (!result.Succeeded)
             {
-                throw new Exception($"Credintial is not valid for this{request.Email}");
+                return Result<AuthResponse>.Failure("Credentials Not valid",HttpStatusCode.Unauthorized);
             }
             var token = await _tokenServices.CreateToken(user);
             var response = new AuthResponse
@@ -56,15 +61,16 @@ namespace Identity.Services
                 UserName = user.UserName,
                 Email = user.Email,
                 Token = token,
+                Basket = Basket ?? null
             };
-            return response;
+            return Result<AuthResponse>.Success(response);
         }
-        public async Task<ApplicationUser> GetUser(AuthRequest request)
+        public async Task<Result<ApplicationUser>> GetUser(AuthRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
             var checkPass = await _userManager.CheckPasswordAsync(user, request.Password);
-            if (checkPass) return user;
-            return null;
+            if (checkPass) return Result<ApplicationUser>.Success(user);
+            return Result<ApplicationUser>.Failure("Credential not valid", HttpStatusCode.Unauthorized);
         }
         public async Task<RegisterationResponse> Register(RegistarationRequest request)
         {
@@ -107,5 +113,7 @@ namespace Identity.Services
             await _dbContext.SaveChangesAsync();
 
         }
+
+      
     }
 }

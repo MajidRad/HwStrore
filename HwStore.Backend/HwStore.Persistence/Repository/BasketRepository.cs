@@ -25,7 +25,7 @@ namespace HwStore.Persistence.Repository
         {
 
             var basket = await _db.Baskets
-                .AsNoTracking()
+                
                 .Include(p => p.BasketItems)
                 .ThenInclude(p => p.Product)
                 .ThenInclude(x => x.Images)

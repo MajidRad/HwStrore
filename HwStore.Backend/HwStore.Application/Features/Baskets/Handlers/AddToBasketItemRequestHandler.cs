@@ -32,7 +32,7 @@ namespace HwStore.Application.Features.Baskets.Handlers
             if (string.IsNullOrEmpty(buyerId))
             {
                 buyerId = Guid.NewGuid().ToString();
-                var cookieOptions = new CookieOptions 
+                var cookieOptions = new CookieOptions
                 { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
                 _httpContext.HttpContext.Response.Cookies.Append("buyerId", buyerId, cookieOptions);
             }
@@ -40,8 +40,8 @@ namespace HwStore.Application.Features.Baskets.Handlers
             _unitOfWork.BasketRepository.Add(basket);
             return basket;
         }
-      
-       async Task<Result<BasketDto_Base>> IRequestHandler<AddToBasketItemRequest, Result<BasketDto_Base>>.Handle(AddToBasketItemRequest request, CancellationToken cancellationToken)
+
+        async Task<Result<BasketDto_Base>> IRequestHandler<AddToBasketItemRequest, Result<BasketDto_Base>>.Handle(AddToBasketItemRequest request, CancellationToken cancellationToken)
         {
             var product = await _unitOfWork.ProductRepository
               .GetFirstOrDefault(x => x.Id == request.AddToBasket.productId);
@@ -61,7 +61,7 @@ namespace HwStore.Application.Features.Baskets.Handlers
             }
             var existingItem = basket.BasketItems.FirstOrDefault(x => x.ProductId == request.AddToBasket.productId);
             if (existingItem != null) existingItem.QuantityInBasket = 1;
-
+     
             await _unitOfWork.SaveAsync();
             var mappedBasket = _mapper.Map<BasketDto_Base>(basket);
             return Result<BasketDto_Base>.Success(mappedBasket);
